@@ -17,9 +17,12 @@ ActiveRecord::Schema.define(version: 12) do
   enable_extension "plpgsql"
 
   create_table "alerts", force: true do |t|
-    t.string  "message"
-    t.integer "user_id"
-    t.integer "creator_id"
+    t.string   "message"
+    t.integer  "user_id"
+    t.integer  "creator_id"
+    t.integer  "add_to_circle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "circles", force: true do |t|
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 12) do
     t.datetime "updated_at"
   end
 
-  create_table "circles_users", id: false, force: true do |t|
+  create_table "circles_users", force: true do |t|
     t.integer "user_id"
     t.integer "circle_id"
   end

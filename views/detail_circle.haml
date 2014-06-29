@@ -15,7 +15,7 @@
                     What CIRCLE?
                     %select{name: 'circle'}
                         - logged_in_user.circles.each do |circle|
-                            %option{value: "#{circle.name}", name: "add_to_circle"} 
+                            %option{value: "#{circle.name}"} 
                                 = circle.name
                 %input{type: 'submit', value: 'Add this user'}
 

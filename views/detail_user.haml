@@ -2,7 +2,7 @@
     = "#{@user.email} - #{@user.name}"
 -if you
     %h1
-        = you ? "Your Tasks" : "#{@user.name}'s Tasks" 
+        Your Tasks
     - if @user.tasks.empty? 
         = "no TASKS ;("
     - @user.tasks.order("created_at DESC").all.each do |task| 
@@ -11,17 +11,16 @@
                 = h task.name
                 = link_to "/task/#{task.id}/edit" ,"edit" if you
                 = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
--if you
     %h1
-        = you ? "Your Notifications" : "#{@user.name}'s Notifications" 
-    - if @user.tasks.empty? 
+        Your Notifications
+    - if @user.alerts.empty? 
         = "no Notifications ;("
-    - @user.tasks.order("created_at DESC").all.each do |task| 
-        %ul
+    - @user.alerts.order("created_at DESC").all.each do |alert| 
+        %ul{class: 'messages'}
             %li
-                = h task.name
-                = link_to "/task/#{task.id}/edit" ,"edit" if you
-                = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
+                = h alert.message
+                = link_to "/circle/invite/accept/#{alert.id}", "Accept"
+                = link_to "/circle/invite/decline/#{alert.id}", "Decline"
     %h1
     - if you && @user.circles.empty? 
         = "no CIRCLES ;("

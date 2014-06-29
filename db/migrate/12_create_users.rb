@@ -12,7 +12,8 @@ class CreateUsers < ActiveRecord::Migration
       end
         create_table :alerts do |t|
             t.string :message
-            t.integer :user_id, :creator_id
+            t.integer :user_id, :creator_id, :add_to_circle_id
+            t.timestamps
         end
         create_table :circles do |t|
             t.string :name
@@ -20,7 +21,7 @@ class CreateUsers < ActiveRecord::Migration
             t.integer :creator_id
             t.timestamps
         end
-        create_table :circles_users, id: false do |t|
+        create_table :circles_users do |t|
             t.belongs_to :user
             t.belongs_to :circle
         end

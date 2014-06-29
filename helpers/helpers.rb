@@ -9,19 +9,29 @@ before do
 end
 
 helpers do 
-  NO_LOGIN = "You need to have account, please log in or sign up" 
-  DEFAULT_USERNAME = "Task Friend"
+    NO_LOGIN = "You need to have account, please log in or sign up" 
+    DEFAULT_USERNAME = "Task Friend"
+    SECTION_IS_PRIVATE = "You need to be logged in to see that secion"
 
-  include Rack::Utils
-  alias_method :h, :escape_html
+    include Rack::Utils
+    alias_method :h, :escape_html
 
-  def title
-    @title ?  "#{@title}" : "Annoyer"
+    def title
+        @title ?  "#{@title}" : "Annoyer"
+    end
+
+    def username
+        if is_logged_in?
+        logged_in_user.username
+    end
 end
 
-def username
+def user_page
     if is_logged_in?
-        logged_in_user.username
+        "/user/#{logged_in_user.id}"
+    else
+        show_message SECTION_IS_PRIVATE
+        "/"
     end
 end
 
@@ -61,6 +71,10 @@ def debug object
     else
         object.attributes
     end
+end
+
+def show_message message
+    session[:message] = message
 end
 
 def include_partial haml_file
