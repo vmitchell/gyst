@@ -1,0 +1,16 @@
+%h1 Add a task
+%form{:action => "/task/create", :method => "post"}
+    %label{:for =>"name"} Name:
+    %input{:type => "text", :name => "name", :id => "name"}
+    %label{:for =>"location"} : Location
+    %input{:type => "text", :name => "location", :id => "location"}
+    %label{:for =>"location"} : Due
+    %input{type: "date", datetime: "", name: "due"} 
+    .cirlce
+        What CIRCLE?
+        %select{name: 'circle'}
+            - logged_in_user.circles.each do |circle|
+                - if circle.creator_id == logged_in_user.id
+                    %option{value: "#{circle.name}"} 
+                        = circle.name
+    %input{type: 'submit', value: 'Add task'}
