@@ -6,12 +6,13 @@ post "/circle/create" do
     @circle = Circle.new
     @circle.attributes = params
     @circle.creator_id = logged_in_user.id
-    logged_in_user.circles << @circle
     if @circle.save
+        logged_in_user.circles << @circle
         session[:message] = 'Creation of the CIRCLE was successfull, my lord.'
         redirect "/user/#{logged_in_user.id}"
     else
-        session[:message] = 'Crasdasdasdsa CIRCLE'
+        session[:message] = @circle.errors.inspect
+        session[:message]
         redirect "/user/#{logged_in_user.id}"
     end
 end
@@ -40,8 +41,13 @@ end
 
 get "/circle/:circle_id/delete" do
     #validation
+    circle_id = params[:circle_id]
+    alert = Alert.find_by_add_to_circle_id circle_id
+    if !alert.nil? && alert.add_to_circle_id == circle_id.to_i
+        alert.destroy
+        session[:message]  = "Circle has been cultivated successfully and all invites deleted."
+    end
     logged_in_user.circles.find(params[:circle_id]).destroy
-    session[:message]  = "Circle has been cultivated successfully."
     redirect "/user/#{logged_in_user.id}"
 end
 
@@ -53,21 +59,19 @@ post "/circle/add_to_circle" do
             message: "#{logged_in_user.name.capitalize} would like to add you to the circle '#{circle.name.capitalize}'",
             creator_id: logged_in_user.id,
             add_to_circle_id: circle.id)
-            # circle.users << user_to_add
-            show_message Alert.last.attributes
     end
     redirect "/user/#{logged_in_user.id}"
 end
 
 get "/circle/:circle_id/remove/:id" do
-    @circle = Circle.find_by_id params[:circle_id]
+    @circle = logged_in_user.circles.find_by_id params[:circle_id]
     haml :confirm_remove_from_circle
 end
 
 post "/circle/:circle_id/remove/:id" do
-    @user = User.find_by_id(params[:id])
-    @circle = Circle.find_by_id params[:circle_id]
-    @circle.users.delete(@user)
+    user = User.find_by_id(params[:id])
+    circle = Circle.find_by_id params[:circle_id]
+    circle.users.delete(user)
     redirect "/user/#{logged_in_user.id}"
 end
 

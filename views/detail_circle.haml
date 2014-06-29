@@ -1,9 +1,17 @@
 %h1
 = debug @circle
 - @circle.users.each do |user|
-    = debug user
-    - if in_a_circle
+    = show_message user.circles
+    - if @circle.creator_id == logged_in_user.id
         = link_to "/circle/#{@circle.id}/remove/#{user.id}", "Remove from circle"
+%h1
+    TASKS
+- @circle.tasks.each do |task|
+    = task.name
+    = task.location
+    = task.due
+%h1
+    ADD TO THIS CIRCLE
 .container
     .col-lg-12
         .add-to-cirlce

@@ -74,7 +74,7 @@ def debug object
 end
 
 def show_message message
-    session[:message] = message
+    session.merge!(message: message)
 end
 
 def include_partial haml_file
