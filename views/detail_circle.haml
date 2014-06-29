@@ -4,3 +4,18 @@
     = debug user
     - if in_a_circle
         = link_to "/circle/#{@circle.id}/remove/#{user.id}", "Remove from circle"
+.container
+    .col-lg-12
+        .add-to-cirlce
+            %form{action: '/circle/add_to_circle', method: 'post'}
+                .person
+                    What user to add?
+                    %input{type: 'text', name: 'username', placeholder: 'User\'s username'}
+                .cirlce
+                    What CIRCLE?
+                    %select{name: 'circle'}
+                        - logged_in_user.circles.each do |circle|
+                            %option{value: "#{circle.name}", name: "add_to_circle"} 
+                                = circle.name
+                %input{type: 'submit', value: 'Add this user'}
+

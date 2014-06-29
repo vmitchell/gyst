@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 12) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "alerts", force: true do |t|
+    t.string  "message"
+    t.integer "user_id"
+    t.integer "creator_id"
+  end
+
   create_table "circles", force: true do |t|
     t.string   "name"
     t.boolean  "private",    default: true

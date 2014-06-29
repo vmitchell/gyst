@@ -45,6 +45,15 @@ get "/circle/:circle_id/delete" do
     redirect "/user/#{logged_in_user.id}"
 end
 
+post "/circle/add_to_circle" do
+    user_to_add  = User.find_by_username params[:username]
+    circle = Circle.find_by_name params[:add_to_circle]
+    if !user_to_add.nil? && !circle.nil?
+        circle.users << user_to_add
+    end
+    redirect "/user/#{logged_in_user.id}"
+end
+
 get "/circle/:circle_id/remove/:id" do
     @circle = Circle.find_by_id params[:circle_id]
     haml :confirm_remove_from_circle

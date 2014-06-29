@@ -46,15 +46,6 @@ def you
     end
 end
 
-def your_circle
-    user = User.find_by_username username
-    if  !user.nil? && session[:password] && user.id == params[:id].to_i
-        true
-    else
-        false
-    end
-end
-
 def in_a_circle
   user = User.find_by_username username
     if  !user.nil? && session[:password] && user.circles.find_by_id(params[:circle_id])

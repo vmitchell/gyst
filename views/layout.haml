@@ -1,15 +1,17 @@
 = haml :header, :layout => false
 %body
     %header
+        = p session.inspect
         .container
             .header-wrapper
                 .col-lg-8.col-sm-12
                     .logo 
                         = link_to "/", "Annoyer.io"
                 .col-lg-4.hidden-sm.text-right
-                    = p session.inspect
                     - if is_logged_in?
-                        %span Welcome, #{username}
+                        %span 
+                            Welcome,
+                        = link_to "/user/#{logged_in_user.id}", username
                         = link_to '/logout', "Log Out"
                     - else
                         %span Welcome1s, #{DEFAULT_USERNAME}
