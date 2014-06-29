@@ -65,6 +65,10 @@ def in_a_circle
     end
 end
 
+def your_circle circle
+    logged_in_user.id == circle.creator_id
+end
+
 def debug object
     if object.class.to_s.downcase == 'array'
         object.inspect

@@ -1,5 +1,4 @@
 %section
-    = debug @task
     %h1
         Edit a task
     %form{:action => "/task/#{@task.id}/edit", :method => "post"}
@@ -14,9 +13,10 @@
                         What CIRCLE?
                         %select{name: 'circle'}
                             - logged_in_user.circles.each do |circle|
-                                - if circle.id == @task.circle_id  
+                                - if circle.id == @task.circle_id && circle.creator_id == logged_in_user.id
                                     %option{value: "#{circle.name}", selected: true} 
                                         = circle.name
+                                - elsif circle.creator_id  != logged_in_user.id
                                 - else
                                     %option{value: "#{circle.name}"} 
                                         = circle.name

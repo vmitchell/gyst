@@ -3,17 +3,17 @@ get "/circle/create" do
 end
 
 post "/circle/create" do
-    @circle = Circle.new
-    @circle.attributes = params
-    @circle.creator_id = logged_in_user.id
-    if @circle.save
-        logged_in_user.circles << @circle
+    circle = Circle.new
+    circle.attributes = params
+    circle.creator_id = logged_in_user.id
+    if circle.save
+        logged_in_user.circles << circle
         session[:message] = 'Creation of the CIRCLE was successfull, my lord.'
-        redirect "/user/#{logged_in_user.id}"
+        redirect user_page
     else
-        session[:message] = @circle.errors.inspect
+        session[:message] = circle.errors.inspect
         session[:message]
-        redirect "/user/#{logged_in_user.id}"
+        redirect user_page
     end
 end
 
@@ -24,16 +24,16 @@ get "/circle/:circle_id" do
 end
 
 get "/circle/:circle_id/edit" do
-    @circle = logged_in_user.circles.find_by_id "#{params[:circle_id]}"
+    @circle = logged_in_user.circles.find_by_id params[:circle_id]
     haml :edit_circle
 end
 
 post  "/circle/:circle_id/edit" do
-    @circle = logged_in_user.circles.find_by_id "#{params[:circle_id]}"
-    @circle[:name] = params[:name]
-    if @circle.save
+    circle = logged_in_user.circles.find_by_id params[:circle_id]
+    circle[:name] = params[:name]
+    if circle.save
        session[:message] = 'Your circle was successfully edited.'
-       redirect "/user/#{logged_in_user.id}"
+       redirect user_page
     else
        session[:message] = "WRONG"
     end
@@ -48,30 +48,53 @@ get "/circle/:circle_id/delete" do
         session[:message]  = "Circle has been cultivated successfully and all invites deleted."
     end
     logged_in_user.circles.find(params[:circle_id]).destroy
-    redirect "/user/#{logged_in_user.id}"
+    redirect user_page
 end
 
 post "/circle/add_to_circle" do
     user_to_add  = User.find_by_username params[:username]
     circle = logged_in_user.circles.find_by_name params[:circle]
-    if !user_to_add.nil? && !circle.nil?
-        user_to_add.alerts << Alert.create(
+    if user_to_add.nil?
+        show_message "There is no user with the username ' #{params[:username]} '"
+        redirect user_page
+    end
+    if logged_in_user.id == user_to_add.id
+        show_message "Sorry, adding yourself is somewhat redundant"
+        redirect user_page
+    end
+    if !user_to_add.nil? && !circle.nil? # legit fields
+        alert = user_to_add.alerts.find_by_user_id user_to_add.id
+        if !alert.nil? && alert.add_to_circle_id == circle.id 
+             show_message "Sorry, this user has already been invited."
+        elsif !(user_to_add.circles.find_by_id circle.id).nil?
+             show_message "Sorry, this user is already in the circle '#{circle.name}'."
+        else
+            user_to_add.alerts << Alert.create(
             message: "#{logged_in_user.name.capitalize} would like to add you to the circle '#{circle.name.capitalize}'",
             creator_id: logged_in_user.id,
             add_to_circle_id: circle.id)
+            show_message "User has been notified, please wait for the approval."
+        end
+    else
+        show_message "Oops, something went wrong."
     end
-    redirect "/user/#{logged_in_user.id}"
+    redirect user_page
 end
 
 get "/circle/:circle_id/remove/:id" do
     @circle = logged_in_user.circles.find_by_id params[:circle_id]
-    haml :confirm_remove_from_circle
+    if !@circle.nil? && @circle.creator_id != logged_in_user.id.to_i
+        haml :confirm_remove_from_circle
+    else
+        show_message "If you would like to delete this circle, you can find delete button below."
+        redirect user_page
+    end
 end
 
 post "/circle/:circle_id/remove/:id" do
     user = User.find_by_id(params[:id])
     circle = Circle.find_by_id params[:circle_id]
     circle.users.delete(user)
-    redirect "/user/#{logged_in_user.id}"
+    redirect user_page
 end
 

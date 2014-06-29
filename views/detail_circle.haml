@@ -1,29 +1,31 @@
 %h1
-= debug @circle
 - @circle.users.each do |user|
-    = show_message user.circles
-    - if @circle.creator_id == logged_in_user.id
-        = link_to "/circle/#{@circle.id}/remove/#{user.id}", "Remove from circle"
+    .remove-link
+        - unless @circle.creator_id  == user.id
+            = h user.name
+            = link_to "/circle/#{@circle.id}/remove/#{user.id}", "Remove '#{user.name}' from this circle" 
 %h1
     TASKS
 - @circle.tasks.each do |task|
-    = task.name
-    = task.location
-    = task.due
-%h1
-    ADD TO THIS CIRCLE
-.container
-    .col-lg-12
-        .add-to-cirlce
-            %form{action: '/circle/add_to_circle', method: 'post'}
-                .person
-                    What user to add?
-                    %input{type: 'text', name: 'username', placeholder: 'User\'s username'}
-                .cirlce
-                    What CIRCLE?
-                    %select{name: 'circle'}
-                        - logged_in_user.circles.each do |circle|
-                            %option{value: "#{circle.name}"} 
-                                = circle.name
-                %input{type: 'submit', value: 'Add this user'}
+    = h task.name
+    = h task.location
+    = h task.due
+- if your_circle @circle
+    %h1
+        ADD TO THIS CIRCLE
+    .container
+        .col-lg-12
+            .add-to-cirlce
+                %form{action: '/circle/add_to_circle', method: 'post'}
+                    .person
+                        What user to add?
+                        %input{type: 'text', name: 'username', placeholder: 'User\'s username'}
+                    .cirlce
+                        What CIRCLE?
+                        %select{name: 'circle'}
+                            -logged_in_user.circles.each do |circle|
+                                - if circle.creator_id == logged_in_user.id
+                                    %option{value: "#{h circle.name}"} 
+                                        = h circle.name
+                    %input{type: 'submit', value: 'Add this user'}
 

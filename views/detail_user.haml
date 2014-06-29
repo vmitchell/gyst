@@ -30,11 +30,9 @@
             %ul
                 %li
                     = link_to "/circle/#{circle.id}", "#{circle.name}"
-                    = link_to "/circle/#{circle.id}/edit" ,"edit" if you
-                    = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if you
+                    = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
+                    = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
     - if you 
         %a{href: "/circle/create"} Create a circle 
         %section
-            %h1
-                Add a task
             = haml :create_task, :layout => false

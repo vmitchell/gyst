@@ -19,7 +19,7 @@ post '/user/create' do
     if user.save
         session[:username] = user.username
         session[:password] = user.password
-        redirect "/user/#{user.id}"
+        redirect user_page
     else
         "DDD USER CREATE DDDD"
     end
@@ -31,7 +31,7 @@ post '/user/login' do
         session[:username] = user.username
         session[:password] = user.password
         logged_in_user
-        redirect "/user/#{user.id}"
+        redirect user_page
     else 
         session[:message] = "WRONG, lousy guess."
         redirect "/signup"
