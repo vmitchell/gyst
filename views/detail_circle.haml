@@ -1,0 +1,6 @@
+%h1
+    = debug @circle
+- @circle.users.each do |user|
+    = debug user
+    - if in_a_circle
+        %a{href: "/circle/#{@circle.id}/remove/#{user.id}"} Remove from circlce

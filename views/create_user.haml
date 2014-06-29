@@ -1,0 +1,20 @@
+.content
+    %h1 Sign Up ("Create a new account")
+    %form{:action => "/user/create", :method => "post"}
+        %label{:for =>"name"} Name:
+        %input{:type => "text", :name => "name", :id => "name"}
+        %label{:for =>"email"} Email:
+        %input{:type => "text", :name => "email", :id => "email"}
+        %label{:for =>"username"} username:
+        %input{:type => "text", :name => "username", :id => "username"}
+        %label{:for =>"password"} password:
+        %input{:type => "password", :name => "password", :id => "password"}
+        %input{:type => "submit"}
+    %h1 Login ("I have an account")
+    %form{:action => "/user/login", :method => "post"}
+        %label{:for =>"email"} Email:
+        %label{:for =>"email"} Email:
+        %input{:type => "text", :name => "email", :id => "email"}
+        %label{:for =>"email"} password:
+        %input{:type => "password", :name => "password", :id => "password"}
+        %input{:type => "submit"}

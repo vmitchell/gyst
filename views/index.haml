@@ -1,0 +1,4 @@
+%div(class ="users-wrapper")
+    - @users.each do |user|
+        %h4
+            %a{:href => "/user/#{user.id}"} #{user.username}

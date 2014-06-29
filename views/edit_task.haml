@@ -1,0 +1,8 @@
+%section
+    = debug @task
+    %h1
+        Edit a task
+    %form{:action => "/task/#{@task.id}/edit", :method => "post"}
+        %label{:for =>"name"} Name:
+        %input{:type => "text", :name => "name", :id => "name", :value => "#{@task.name}"}
+        %input{:type => "submit"}

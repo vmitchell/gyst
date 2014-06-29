@@ -1,0 +1,34 @@
+%section.user_ifo
+    = "#{@user.email} - #{@user.name}"
+%h1
+    = you ? "Your Tasks" : "#{@user.name}'s Tasks" 
+- if @user.tasks.empty? 
+    = "no TASKS ;("
+- @user.tasks.order("created_at DESC").all.each do |task| 
+    %ul
+        %li
+            = h task.name
+            = link_to "/task/#{task.id}/edit" ,"edit" if you
+            = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
+%h1
+- if you && @user.circles.empty? 
+    = "no CIRCLES ;("
+- elsif you
+    CIRCLES
+    - @user.circles.all.each do |circle| 
+        %ul
+            %li
+                = link_to "/circle/#{circle.id}", "#{circle.name}"
+                = link_to "/circle/#{circle.id}/edit" ,"edit" if you
+                = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if you
+- if you 
+    %a{href: "/circle/create"} Create a circle 
+    %section
+        %h1
+            Add a task
+        %form{:action => "/task/create", :method => "post"}
+            %label{:for =>"name"} Name:
+            %input{:type => "text", :name => "name", :id => "name"}
+            %label{:for =>"location"} : Location
+            %input{:type => "text", :name => "location", :id => "location"}
+            %input{:type => "submit"}

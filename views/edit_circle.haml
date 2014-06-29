@@ -1,0 +1,7 @@
+%section
+    %h1
+        Edit a circle
+    %form{:action => "/circle/#{@circle.id}/edit", :method => "post"}
+        %label{:for =>"name"} Name:
+        %input{:type => "text", :name => "name", :id => "name", :value => "#{@circle.name}"}
+        %input{:type => "submit"}
