@@ -3,9 +3,10 @@
 source 'https://rubygems.org'
 
 gem "sinatra"
+gem "shotgun"
 gem "activerecord"
 gem "haml"
-gem "shotgun"
+gem "sass"
 gem "sinatra-activerecord"
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'

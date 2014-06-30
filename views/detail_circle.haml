@@ -1,9 +1,11 @@
-%h1
+%h1imated clock
 - @circle.users.each do |user|
-    .remove-link
-        - unless @circle.creator_id  == user.id
-            = h user.name
-            = link_to "/circle/#{@circle.id}/remove/#{user.id}", "Remove '#{user.name}' from this circle" 
+    - if user.id != logged_in_user.id
+        .remove-link
+            %span
+                =h user.name
+            - if your_circle @circle
+                = link_to "/circle/#{@circle.id}/remove/#{user.id}", "Remove '#{user.name}' from this circle" 
 %h1
     TASKS
 - @circle.tasks.each do |task|

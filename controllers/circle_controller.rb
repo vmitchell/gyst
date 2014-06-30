@@ -83,18 +83,29 @@ end
 
 get "/circle/:circle_id/remove/:id" do
     @circle = logged_in_user.circles.find_by_id params[:circle_id]
-    if !@circle.nil? && @circle.creator_id != logged_in_user.id.to_i
-        haml :confirm_remove_from_circle
+    @user =User.find_by_id params[:id]
+    if !@circle.nil?
+        if @circle.creator_id == @user.id #ownership check too
+            show_message "This will delete the circle since you are it's owner." #ALERT
+            haml :confirm_remove_from_circle
+        else
+            haml :confirm_remove_from_circle
+        end
     else
-        show_message "If you would like to delete this circle, you can find delete button below."
+        show_message "Missing circle to add remove from"
         redirect user_page
     end
 end
 
 post "/circle/:circle_id/remove/:id" do
-    user = User.find_by_id(params[:id])
+    user = User.find_by_id params[:id]
     circle = Circle.find_by_id params[:circle_id]
-    circle.users.delete(user)
-    redirect user_page
+    if circle.creator_id == user.id
+        circle.users.delete user
+        circle.destroy
+    else 
+        circle.users.delete user
+    end
+        redirect user_page
 end
 

@@ -36,3 +36,19 @@
         %a{href: "/circle/create"} Create a circle 
         %section
             = haml :create_task, :layout => false
+.clock-wrapper
+    .clock-border
+        .clock
+            %ul.minute-marks
+                - (1..6).each do |i|
+                    %li.five
+                    - (1..4).each do |j|
+                        %li
+            .hour
+                .hand
+            .minute
+                .hand
+            .second
+                .hand           
+    %h1
+        Pure CSS animated clock

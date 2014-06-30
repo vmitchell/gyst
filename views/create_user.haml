@@ -18,3 +18,12 @@
         %label{:for =>"email"} password:
         %input{:type => "password", :name => "password", :id => "password"}
         %input{:type => "submit"}
+
+#login.login-form-container
+    %header LOGIN - SIGN UP
+    %fieldset
+        .input-wrapper
+            %input{placeholder: "your@email.com", type: "text"}/
+        .input-wrapper
+            %input{placeholder: "password", type: "password"}/
+        %button#continue{type: "button"} CONTINUE
