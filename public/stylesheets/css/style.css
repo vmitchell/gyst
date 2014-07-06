@@ -1,4 +1,3 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css);
 body {
   background-color: #ACAFB8;
   color: #fff;
@@ -95,3 +94,55 @@ body {
 
   100% {
     margin-left: 0; } }
+body {
+  font-family: Lato;
+  background: #bada55; }
+
+.container-profile {
+  width: 300px; }
+
+a {
+  display: inline-block;
+  transition: all ease 0.3s; }
+
+.profile-box {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  position: relative; }
+  .profile-box .profile-picture {
+    position: absolute;
+    top: 240px;
+    left: 50%;
+    margin-left: -55px; }
+    .profile-box .profile-picture img {
+      border: 5px solid #fff;
+      border-radius: 100%;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+      width: 100px;
+      height: 100px; }
+
+.profile-cover-image {
+  height: 300px;
+  overflow: hidden; }
+  .profile-cover-image img {
+    width: 100%; }
+
+.profile-content {
+  padding: 40px 20px;
+  text-align: center; }
+  .profile-content h1 {
+    font-weight: normal;
+    margin-bottom: 0.2em; }
+  .profile-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #d2d2d2; }
+  .profile-content .socials a {
+    color: #d2d2d2;
+    margin: 0 15px;
+    font-size: 1.6em;
+    transform: translateY(4px); }
+    .profile-content .socials a:hover {
+      color: #aaa;
+      transform: translateY(0); }

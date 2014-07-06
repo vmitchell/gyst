@@ -1,5 +1,23 @@
-%section.user_ifo
-    = "#{@user.email} - #{@user.name}"
+%section.user_info
+    =logged_in_user.timezone
+    .container-profile
+        .profile-box
+            .profile-cover-image
+                %img{src: "http://api.randomuser.me/portraits/lego/#{a = rand(1..9)}.jpg"}
+            .profile-picture
+                %img{src: "http://api.randomuser.me/portraits/lego/#{a}.jpg"}
+        .profile-content
+            %h1 
+                = "#{@user.name}"
+            %p 
+                = "#{@user.email}"
+            .socials
+            %a{href: "#"}
+                %i.fa.fa-dribbble
+            %a{href: "#"}
+                %i.fa.fa-twitter
+            %a{href: "#"}
+                %i.fa.fa-github
 -if you
     %h1
         Your Tasks
@@ -9,6 +27,9 @@
         %ul
             %li
                 = h task.name
+                - date = task.due
+                - if !date.nil?
+                    = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
                 = link_to "/task/#{task.id}/edit" ,"edit" if you
                 = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
     %h1
@@ -36,19 +57,3 @@
         %a{href: "/circle/create"} Create a circle 
         %section
             = haml :create_task, :layout => false
-.clock-wrapper
-    .clock-border
-        .clock
-            %ul.minute-marks
-                - (1..6).each do |i|
-                    %li.five
-                    - (1..4).each do |j|
-                        %li
-            .hour
-                .hand
-            .minute
-                .hand
-            .second
-                .hand           
-    %h1
-        Pure CSS animated clock

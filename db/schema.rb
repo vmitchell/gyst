@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 12) do
 
   create_table "alerts", force: true do |t|
     t.string   "message"
+    t.string   "alert_type"
     t.integer  "user_id"
     t.integer  "creator_id"
     t.integer  "add_to_circle_id"
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 12) do
     t.string   "username"
     t.string   "password"
     t.string   "email"
+    t.string   "timezone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

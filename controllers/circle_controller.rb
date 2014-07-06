@@ -72,6 +72,7 @@ post "/circle/add_to_circle" do
             user_to_add.alerts << Alert.create(
             message: "#{logged_in_user.name.capitalize} would like to add you to the circle '#{circle.name.capitalize}'",
             creator_id: logged_in_user.id,
+            alert_type: "request",
             add_to_circle_id: circle.id)
             show_message "User has been notified, please wait for the approval."
         end

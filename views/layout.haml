@@ -1,7 +1,7 @@
 = haml :header, :layout => false
 %body
     %header
-        = p session.inspect
+        / = p session.inspect
         .container
             .header-wrapper
                 .col-lg-8.col-sm-12
@@ -13,6 +13,9 @@
                             Welcome,
                         = link_to "/user/#{logged_in_user.id}", username
                         = link_to '/logout', "Log Out"
+                        - get_reminders.each do |task|
+                            = (task.due.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
+                            = task.user.name
                     - else
                         %span Welcome1s, #{DEFAULT_USERNAME}
                         = link_to '/signup' , "Login/Sign Up"
@@ -21,6 +24,10 @@
                 .alert.alert-success  
                     = session[:message]
             - session[:message] = ""
+            -if @errors
+                - @errors.each do |e|
+                    .alert.alert-danger
+                        = e.inspect
             .jumbotron
                 %h1.text-center Lorem ipsum dolor sit amer, lufireus ae dloelrs fi  fodprun
                 %h2.text-center Lorem ipsum dolor sit amet

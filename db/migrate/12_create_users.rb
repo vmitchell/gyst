@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
     def change
         create_table :users do |t|
-            t.string :name, :username, :password, :email
+            t.string :name, :username, :password, :email, :timezone
             t.timestamps
         end
         create_table :tasks do |t|
@@ -11,8 +11,8 @@ class CreateUsers < ActiveRecord::Migration
             t.timestamps
       end
         create_table :alerts do |t|
-            t.string :message
-            t.integer :user_id, :creator_id, :add_to_circle_id
+            t.string :message, :alert_type
+            t.integer :user_id, :creator_id, :add_to_circle_id, :task_id
             t.timestamps
         end
         create_table :circles do |t|

@@ -1,7 +1,11 @@
 %section
-    %h1
-        Edit a circle
+  - get_reminders.each do |task|
+    = (task.due.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
+    = task.user.name
+    = link_to "/remind/#{task.user.id}/#{task.id}", "Remind"
+  %h1
+    Edit a circle
     %form{:action => "/circle/#{@circle.id}/edit", :method => "post"}
-        %label{:for =>"name"} Name:
-        %input{:type => "text", :name => "name", :id => "name", :value => "#{@circle.name}"}
-        %input{:type => "submit"}
+      %label{:for =>"name"} Name:
+      %input{:type => "text", :name => "name", :id => "name", :value => "#{@circle.name}"}
+      %input{:type => "submit"}

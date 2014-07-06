@@ -1,7 +1,7 @@
 get '/circle/invite/accept/:alert_id' do 
     alert = logged_in_user.alerts.find_by_id params[:alert_id]
     if !alert.nil? && is_logged_in?
-        creator = User.find_by_id(alert.creator_id)
+        creator = User.find_by_id alert.creator_id
         circle_id = alert.add_to_circle_id
         circle = Circle.find_by_id circle_id
              logged_in_user.circles << circle

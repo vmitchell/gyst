@@ -19,6 +19,7 @@ post '/user/create' do
     if user.save
         session[:username] = user.username
         session[:password] = user.password
+        send_email user.email, "Hello", "body of the letter"
         redirect user_page
     else
         "DDD USER CREATE DDDD"
@@ -42,3 +43,6 @@ get '/logout' do
     session.clear
     redirect '/'
 end
+ post '/contact' do
+
+   end
