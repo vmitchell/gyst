@@ -41,13 +41,13 @@ end
 
 get "/circle/:circle_id/delete" do
     #validation
-    circle_id = params[:circle_id]
+    circle_id = params[:circle_id].to_i
     alert = Alert.find_by_add_to_circle_id circle_id
-    if !alert.nil? && alert.add_to_circle_id == circle_id.to_i
+    if !alert.nil? && alert.add_to_circle_id == circle_id
         alert.destroy
         session[:message]  = "Circle has been cultivated successfully and all invites deleted."
     end
-    logged_in_user.circles.find(params[:circle_id]).destroy
+    logged_in_user.circles.find(circle_id).destroy
     redirect user_page
 end
 

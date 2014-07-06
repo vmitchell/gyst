@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 12) do
     t.integer  "user_id"
     t.integer  "creator_id"
     t.integer  "add_to_circle_id"
+    t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

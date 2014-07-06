@@ -124,6 +124,15 @@ helpers do
         })
     end
 
+    def create_reminder
+        Alert.create(
+        message: "simple reminder",
+        creator_id: logged_in_user.id,
+        alert_type: "reminder",
+        user_id: logged_in_user.id,
+        task_id: params[:task_id].to_i)
+    end
+
     def get_reminders
         reminders_query
     end

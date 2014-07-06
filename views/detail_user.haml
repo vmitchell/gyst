@@ -1,5 +1,5 @@
 %section.user_info
-    =logged_in_user.timezone
+    = logged_in_user.timezone
     .container-profile
         .profile-box
             .profile-cover-image
@@ -34,14 +34,16 @@
                 = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
     %h1
         Your Notifications
-    - if @user.alerts.empty? 
+    - if @user.alerts.find_by_alert_type("request").nil? 
         = "no Notifications ;("
-    - @user.alerts.order("created_at DESC").all.each do |alert| 
-        %ul{class: 'messages'}
-            %li
-                = h alert.message
-                = link_to "/circle/invite/accept/#{alert.id}", "Accept"
-                = link_to "/circle/invite/decline/#{alert.id}", "Decline"
+    - else
+        - @user.alerts.order("created_at DESC").all.each do |alert| 
+            - if alert.alert_type == "request"
+                %ul{class: 'messages'}
+                    %li
+                        = h alert.message
+                        = link_to "/circle/invite/accept/#{alert.id}", "Accept"
+                        = link_to "/circle/invite/decline/#{alert.id}", "Decline"
     %h1
     - if you && @user.circles.empty? 
         = "no CIRCLES ;("
@@ -57,3 +59,16 @@
         %a{href: "/circle/create"} Create a circle 
         %section
             = haml :create_task, :layout => false
+        - if @user.circles.empty? 
+            = "no tasks not even shared ;("
+        - else
+            -@user.circles.each do | circle | 
+                - circle.tasks.order("due DESC").all.each do |task| 
+                    %ul
+                        %li
+                            = h task.name
+                            - date = task.due
+                            - if !date.nil?
+                                = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
+                            / = link_to "/task/#{task.id}/edit" ,"edit" if you
+                            / = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
