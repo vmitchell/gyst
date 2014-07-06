@@ -43,6 +43,3 @@ get '/logout' do
     session.clear
     redirect '/'
 end
- post '/contact' do
-
-   end

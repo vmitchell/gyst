@@ -65,7 +65,8 @@
             -@user.circles.each do | circle | 
                 - circle.tasks.order("due DESC").all.each do |task| 
                     %ul
-                        %li
+                        -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60)
+                            %li
                             = h task.name
                             - date = task.due
                             - if !date.nil?

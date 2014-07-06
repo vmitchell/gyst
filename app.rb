@@ -1,9 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'pony'
-require 'chronic'
-require 'timezone'
-require 'date_time_attribute'
 require 'debugger'
 require './env'
 

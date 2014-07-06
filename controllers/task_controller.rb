@@ -1,4 +1,3 @@
-
 post "/task/create" do
     circle_name = params[:circle]
     circle = logged_in_user.circles.find_by_name circle_name

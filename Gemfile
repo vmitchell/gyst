@@ -7,7 +7,7 @@ gem "shotgun"
 gem "activerecord"
 gem "haml"
 gem "sass"
-gem 'timezone'
+# gem 'timezone'
 gem "pony"
 gem 'debugger'
 gem "sinatra-activerecord"

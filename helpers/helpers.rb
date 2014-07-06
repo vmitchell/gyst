@@ -3,16 +3,14 @@ configure do
     set :session_secret, 'secret'
     set :haml, :layout => :'/layout'
     Time.zone =  'UTC'
-    # DateTimeAttribute.parser = Chronic
-
     ActiveRecord::Base.default_timezone = :utc
     # ActiveRecord::Base.time_zone_aware_attributes = true
-    # ActiveRecord::Base.send(:include, DateTimeAttribute)
     # Pony.options = { :from => 'noreply@example.com', :via => :smtp, :via_options => { :host => 'smtp.yourserver.com' } }
 end
 
 before do
     is_logged_in? ? Time.zone = logged_in_user.timezone : return
+    is_logged_in? ? get_reminders : ""
     is_logged_in? ? session[:username] : session[:username] = "Task Friend"     
 end
 
