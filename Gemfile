@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem "sinatra"
 gem "shotgun"
 gem "activerecord"
+gem 'bcrypt'
 gem "haml"
 gem "sass"
 gem "pony"

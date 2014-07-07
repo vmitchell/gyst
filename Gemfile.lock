@@ -15,6 +15,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.7)
     bond (0.5.1)
     builder (3.2.2)
     columnize (0.8.9)
@@ -80,6 +81,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  bcrypt
   debugger
   haml
   pg

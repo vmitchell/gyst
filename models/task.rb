@@ -1,12 +1,24 @@
 class User < ActiveRecord::Base
+    include BCrypt
+
     has_and_belongs_to_many :circles
     has_many :tasks
     has_many :alerts
 
-    validates :name, presence: true
+    validates :name, :presence => :true, length:{minimum: 1}
     validates :email, uniqueness: true,  presence: true
     validates :username, uniqueness: true, presence: true
     validates :password, presence: true
+
+  def password
+    @password ||= Password.new password_hash
+  end
+
+  def password= new_password
+    @password = Password.create new_password
+    self.password_hash = @password
+  end
+  
 end
  
 class Task < ActiveRecord::Base

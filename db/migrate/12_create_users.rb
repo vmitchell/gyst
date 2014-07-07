@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
     def change
         create_table :users do |t|
-            t.string :name, :username, :password, :email, :timezone
+            t.string :name, :username, :email, :timezone, :password_hash
             t.timestamps
         end
         create_table :tasks do |t|

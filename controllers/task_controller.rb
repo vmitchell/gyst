@@ -48,13 +48,14 @@ get "/task/:task_id/delete" do
     task = logged_in_user.tasks.find_by_id "#{params[:task_id]}"
     logged_in_user.tasks.find(task.id).destroy
     session[:message]  = "Task has been cultivated successfully."
-    (Alert.find_by_task_id task.id).destroy
+    if !alert = (Alert.find_by_task_id task.id).nil?
+        alert.destroy
+    end
     redirect user_page
 end
 
 get '/remind/:user_id/:task_id' do
     task_id = Task.find_by_id params[:task_id].to_i
-    task = Task.find_by_id task_id
     user = User.find_by_id params[:user_id]
     match = logged_in_user.alerts.find_by_task_id task_id
     if !match.nil?
@@ -69,3 +70,5 @@ get '/remind/:user_id/:task_id' do
         redirect user_page
     end
 end
+
+

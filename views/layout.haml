@@ -12,6 +12,7 @@
                         %span 
                             Welcome,
                         = link_to "/user/#{logged_in_user.id}", username
+                        = link_to "/user/#{logged_in_user.id}/edit", "(edit)"
                         = link_to '/logout', "Log Out"
                         - get_reminders.each do |task|
                             = (task.due.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
