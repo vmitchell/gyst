@@ -35,7 +35,9 @@ post  "/task/:task_id/edit" do
     circle = logged_in_user.circles.find_by_name params[:circle]
     circle.tasks << @task
     if @task.save
-        (Alert.find_by_task_id @task.id).destroy
+        if !alert = (Alert.find_by_task_id @task.id).nil?
+            alert.destroy
+        end
         session[:message] = 'Your task was successfully edited.'
         redirect "/task/#{@task.id}/edit"
     else
@@ -55,9 +57,9 @@ get "/task/:task_id/delete" do
 end
 
 get '/remind/:user_id/:task_id' do
-    task_id = Task.find_by_id params[:task_id].to_i
+    task = Task.find_by_id params[:task_id]
     user = User.find_by_id params[:user_id]
-    match = logged_in_user.alerts.find_by_task_id task_id
+    match = logged_in_user.alerts.find_by_task_id task.id
     if !match.nil?
         show_message "You have already reminded #{user.name} about this task."
         redirect user_page

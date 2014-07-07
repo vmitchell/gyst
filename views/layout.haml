@@ -1,34 +1,39 @@
 = haml :header, :layout => false
 %body
+    %nav.navbar.navbar-default{role: "navigation"}
+        .container
+            .navbar-header
+                %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+                    %span.icon-bar
+                    %span.icon-bar
+                    %span.icon-bar
+                %a.navbar-brand{href: "/"} Annoyer.io
+            .collapse.navbar-collapse.navbar-right.navbar-ex1-collapse
+                %ul.nav.navbar-nav
+                    %li
+                        - if is_logged_in?
+                            %span   
+                                Welcome,
+                                = link_to "/user/#{logged_in_user.id}", username
+                                = link_to "/user/#{logged_in_user.id}/edit", "(edit)"
+                                = link_to '/logout', "Log Out"
+                                = get_reminders.size
+                        - else
+                            %span
+                                Welcome1s, #{DEFAULT_USERNAME}
+                                = link_to '/signup' , "Login/Sign Up"
     %header
         / = p session.inspect
         .container
             .header-wrapper
-                .col-lg-8.col-sm-12
-                    .logo 
-                        = link_to "/", "Annoyer.io"
-                .col-lg-4.hidden-sm.text-right
-                    - if is_logged_in?
-                        %span 
-                            Welcome,
-                        = link_to "/user/#{logged_in_user.id}", username
-                        = link_to "/user/#{logged_in_user.id}/edit", "(edit)"
-                        = link_to '/logout', "Log Out"
-                        - get_reminders.each do |task|
-                            = (task.due.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
-                            = task.user.name
-                    - else
-                        %span Welcome1s, #{DEFAULT_USERNAME}
-                        = link_to '/signup' , "Login/Sign Up"
-        .container
-            - if  !session[:message].nil? && !session[:message].empty?
-                .alert.alert-success  
-                    = session[:message]
-            - session[:message] = ""
-            -if @errors
-                - @errors.each do |e|
-                    .alert.alert-danger
-                        = e.inspect
+                - if  !session[:message].nil? && !session[:message].empty?
+                    .alert.alert-success  
+                        = session[:message]
+                - session[:message] = ""
+                -if @errors
+                    - @errors.each do |e|
+                        .alert.alert-danger
+                            = e
             .jumbotron
                 %h1.text-center Lorem ipsum dolor sit amer, lufireus ae dloelrs fi  fodprun
                 %h2.text-center Lorem ipsum dolor sit amet
@@ -41,3 +46,6 @@
             .col-lg-8.text-right 
                 %span
                     Love your task (c)
+
+
+

@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 12) do
     t.string   "email"
     t.string   "timezone"
     t.string   "password_hash"
+    t.integer  "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

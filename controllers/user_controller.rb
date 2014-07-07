@@ -17,6 +17,7 @@ end
 post '/user/create' do
     user = User.create params
     user.password_hash = BCrypt::Password.create(params[:password])
+    user.picture = rand(1..9)
     if user.save
         session[:username] = user.username
         session[:password] = user.password

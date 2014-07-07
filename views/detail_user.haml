@@ -1,11 +1,12 @@
 %section.user_info
-    = logged_in_user.timezone
+    - if is_logged_in?
+        = logged_in_user.timezone
     .container-profile
         .profile-box
             .profile-cover-image
-                %img{src: "http://api.randomuser.me/portraits/lego/#{a = rand(1..9)}.jpg"}
+                %img{src: "/imgs/lego_faces/#{@user.picture}.jpg"} 
             .profile-picture
-                %img{src: "http://api.randomuser.me/portraits/lego/#{a}.jpg"}
+                %img{src: "/imgs/lego_faces/#{@user.picture}.jpg"}
         .profile-content
             %h1 
                 = "#{@user.name}"

@@ -1,5 +1,4 @@
 body {
-  background-color: #ACAFB8;
   color: #fff;
   font-family: arial, helvetica, sans-serif;
   line-height: 1.4;
@@ -8,70 +7,8 @@ body {
 *, *:before, *:after {
   box-sizing: border-box; }
 
-.login-form-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  width: 270px;
-  border-radius: 3px;
-  background-color: #272E38;
-  overflow: hidden; }
-  .denied .login-form-container {
-    animation: shake 0.35s normal forwards ease-in-out; }
-  .login-form-container fieldset {
-    border: none; }
-  .login-form-container header {
-    background-color: #202731;
-    color: #C5C6C8;
-    display: block;
-    padding: 1.5em;
-    text-align: center; }
-  .login-form-container .input-wrapper {
-    position: relative;
-    display: block;
-    margin: 2em auto;
-    border-bottom: 1px solid #FC7148;
-    border-radius: 3px;
-    width: 170px;
-    padding-left: 20px; }
-    .login-form-container .input-wrapper input {
-      width: 100%;
-      line-height: 2;
-      background-color: transparent;
-      border: none;
-      padding: .6em .5em;
-      outline: 0; }
-      .login-form-container .input-wrapper input::-webkit-input-placeholder, .login-form-container .input-wrapper input::-moz-placeholder, .login-form-container .input-wrapper input:-ms-input-placeholder {
-        color: #9EA2AB; }
-    .login-form-container .input-wrapper:before {
-      font-family: FontAwesome;
-      position: absolute;
-      display: inline-block;
-      top: 9px;
-      left: 8px;
-      font-size: 10px;
-      color: #FC7148; }
-    .login-form-container .input-wrapper:nth-child(1):before {
-      content: "\f007"; }
-    .login-form-container .input-wrapper:nth-child(2):before {
-      content: "\f023"; }
-  .login-form-container button {
-    outline: 0;
-    font-size: 8px;
-    letter-spacing: 0.1em;
-    background-color: #FC7148;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    width: 200px;
-    padding: 1.2em 0;
-    margin: 4em auto;
-    display: block;
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent; }
-    .login-form-container button:hover {
-      border-bottom-color: #c12e03; }
+.denied {
+  animation: shake 0.35s normal forwards ease-in-out; }
 
 @keyframes shake {
   0% {
@@ -95,8 +32,7 @@ body {
   100% {
     margin-left: 0; } }
 body {
-  font-family: Lato;
-  background: #bada55; }
+  font-family: Lato; }
 
 .container-profile {
   width: 300px; }
@@ -146,3 +82,124 @@ a {
     .profile-content .socials a:hover {
       color: #aaa;
       transform: translateY(0); }
+
+body, html {
+  height: 100%;
+  width: 100%; }
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700; }
+
+.lead {
+  font-size: 18px;
+  font-weight: 400; }
+
+.intro-header {
+  padding-top: 50px;
+  /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-bottom: 50px;
+  color: #f8f8f8;
+  background: url(../img/intro-bg.jpg) no-repeat center center;
+  background-size: cover;
+  text-align: center; }
+
+.intro-message {
+  position: relative;
+  padding-top: 20%;
+  padding-bottom: 20%; }
+
+.intro-message > h1 {
+  margin: 0;
+  font-size: 5em;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); }
+
+.intro-divider {
+  width: 400px;
+  border-top: 1px solid #f8f8f8;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+
+.intro-message > h3 {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); }
+
+@media (max-width: 767px) {
+  .intro-message {
+    padding-bottom: 15%; }
+
+  .intro-message > h1 {
+    font-size: 3em; }
+
+  ul.intro-social-buttons > li {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0; }
+
+  ul.intro-social-buttons > li:last-child {
+    margin-bottom: 0; }
+
+  .intro-divider {
+    width: 100%; } }
+.network-name {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px; }
+
+.content-section-a {
+  background-color: #f8f8f8;
+  padding: 50px 0; }
+
+.content-section-b {
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 50px 0; }
+
+.section-heading {
+  margin-bottom: 30px; }
+
+.section-heading-spacer {
+  border-top: 3px solid #e7e7e7;
+  width: 200px;
+  float: left; }
+
+.banner {
+  padding: 100px 0;
+  color: #f8f8f8;
+  background: url(../img/banner-bg.jpg) no-repeat center center;
+  background-size: cover; }
+
+.banner h2 {
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+  font-size: 3em; }
+
+.banner ul {
+  margin-bottom: 0; }
+
+.banner-social-buttons {
+  float: right;
+  margin-top: 0; }
+
+@media (max-width: 1199px) {
+  ul.banner-social-buttons {
+    float: left;
+    margin-top: 15px; } }
+@media (max-width: 767px) {
+  .banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    font-size: 3em; }
+
+  ul.banner-social-buttons > li {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0; }
+
+  ul.banner-social-buttons > li:last-child {
+    margin-bottom: 0; } }
+footer {
+  background-color: #f8f8f8;
+  padding: 50px 0; }
+
+p.copyright {
+  margin: 15px 0 0; }
