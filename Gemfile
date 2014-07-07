@@ -7,9 +7,10 @@ gem "shotgun"
 gem "activerecord"
 gem "haml"
 gem "sass"
-# gem 'timezone'
 gem "pony"
 gem 'debugger'
+gem 'rack-flash3'
+gem 'timezone'
 gem "sinatra-activerecord"
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'

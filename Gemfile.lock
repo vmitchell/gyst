@@ -36,6 +36,8 @@ GEM
     pony (1.9)
       mail (>= 2.0)
     rack (1.5.2)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -64,6 +66,7 @@ GEM
       sinatra (>= 1.0.0)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timezone (0.3.2)
     tux (0.3.0)
       ripl (>= 0.3.5)
       ripl-multi_line (>= 0.2.4)
@@ -81,10 +84,12 @@ DEPENDENCIES
   haml
   pg
   pony
+  rack-flash3
   sass
   shotgun
   sinatra
   sinatra-activerecord
   sinatra-flash
   sinatra-redirect-with-flash
+  timezone
   tux

@@ -30,6 +30,3 @@ class Alert < ActiveRecord::Base
     belongs_to :user
     #validate message on create
 end
-
-
-
