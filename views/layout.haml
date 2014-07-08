@@ -7,23 +7,26 @@
                     %span.icon-bar
                     %span.icon-bar
                     %span.icon-bar
-                %a.navbar-brand{href: "/"} Annoyer.io
+                %a.navbar-brand{href: "/"} gyst
             .collapse.navbar-collapse.navbar-right.navbar-ex1-collapse
                 %ul.nav.navbar-nav
-                    %li
+                    %li  
                         - if is_logged_in?
-                            %span   
-                                Welcome,
+                            .nav-login-block
+                                %a{href: "/user/#{logged_in_user.id}"}
+                                    %img{src: "/imgs/lego_faces/#{logged_in_user.picture}.jpg", class: "user-pic"}
+                                    %a{href: "/user/#{logged_in_user.id}/alerts", class: "alerts"} 
+                                        = get_reminders.size
                                 = link_to "/user/#{logged_in_user.id}", username
                                 = link_to "/user/#{logged_in_user.id}/edit", "(edit)"
-                                = link_to '/logout', "Log Out"
-                                = get_reminders.size
+                                = link_to '/logout', "Log Out", class: "btn-logout"
+                                
                         - else
-                            %span
-                                Welcome1s, #{DEFAULT_USERNAME}
-                                = link_to '/signup' , "Login/Sign Up"
+                            .nav-login-block
+                                %span
+                                    Welcome, #{DEFAULT_USERNAME}
+                                = link_to '/signup' , "Login/Sign Up", {class: "btn-login"}
     %header
-        / = p session.inspect
         .container
             .header-wrapper
                 - if  !session[:message].nil? && !session[:message].empty?
@@ -34,9 +37,6 @@
                     - @errors.each do |e|
                         .alert.alert-danger
                             = e
-            .jumbotron
-                %h1.text-center Lorem ipsum dolor sit amer, lufireus ae dloelrs fi  fodprun
-                %h2.text-center Lorem ipsum dolor sit amet
             = yield
     %footer
         .container

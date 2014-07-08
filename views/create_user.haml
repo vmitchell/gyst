@@ -2,13 +2,13 @@
     %h1 Sign Up ("Create a new account")
     %form{:action => "/user/create", :method => "post"}
         %label{:for =>"name"} Name:
-        %input{:type => "text", :name => "name", :id => "name"}
+        %input{:type => "text", :name => "name", :id => "name", required: "true"}
         %label{:for =>"email"} Email:
-        %input{:type => "text", :name => "email", :id => "email"}
+        %input{:type => "email", :name => "email", :id => "email", required: "true"}
         %label{:for =>"username"} username:
-        %input{:type => "text", :name => "username", :id => "username"}
+        %input{:type => "text", :name => "username", :id => "username", required: "true"}
         %label{:for =>"password"} password:
-        %input{:type => "password", :name => "password", :id => "password"}
+        %input{:type => "password", :name => "password", :id => "password", required: "true"}
         %select{name: "timezone", id: "timezone"}
             - Timezone::Zone.names.each do | timezone | 
                 %option{name: "timezone", value: "#{timezone}"} #{timezone}
@@ -17,9 +17,9 @@
     %form{:action => "/user/login", :method => "post"}
         %label{:for =>"email"} Email:
         %label{:for =>"email"} Email:
-        %input{:type => "text", :name => "email", :id => "email"}
+        %input{:type => "email", :name => "email", :id => "email", required: "true"}
         %label{:for =>"email"} password:
-        %input{:type => "password", :name => "password", :id => "password"}
+        %input{:type => "password", :name => "password", :id => "password",  required: "true"}
         %input{:type => "submit"}
 
 / #login.login-form-container

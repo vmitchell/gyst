@@ -1,7 +1,7 @@
 %h1
     Are you sure you want to delete person?
     %form{:action => "/circle/#{params[:circle_id]}/remove/#{params[:id]}", :method => "post"}
-        %label{:for =>"alert"} Are you sure?
-        %label{:for =>"email"} password:
+        %label{for: "alert"} Are you sure?
+        %label{for: "email"} password:
         = link_to "/circle/#{params[:circle_id]}", "Cancel"
         %input{:type => "submit"}

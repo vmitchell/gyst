@@ -1,3 +1,47 @@
+@import url(http://fonts.googleapis.com/css?family=Changa+One);
+.navbar.navbar-default .navbar-brand {
+  font-family: Changa One;
+  font-size: 4rem;
+  font-weight: lighter;
+  color: #b11111;
+  position: relative;
+  top: -3px; }
+.navbar.navbar-default .nav-login-block {
+  margin-top: 5px;
+  position: relative; }
+  .navbar.navbar-default .nav-login-block .btn-logout,
+  .navbar.navbar-default .nav-login-block .btn-login {
+    padding: 7px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background: #ffd03c;
+    color: #fff;
+    border: 2px solid #f1e22c; }
+    .navbar.navbar-default .nav-login-block .btn-logout:hover,
+    .navbar.navbar-default .nav-login-block .btn-login:hover {
+      text-decoration: none; }
+  .navbar.navbar-default .nav-login-block .alerts {
+    font-family: Changa One;
+    position: absolute;
+    left: -20%;
+    font-size: 1.6rem;
+    background: #b11111;
+    border-radius: 50%;
+    width: 24px;
+    height: 22px;
+    top: 5px;
+    text-align: center;
+    color: white; }
+  .navbar.navbar-default .nav-login-block .user-pic {
+    border: 5px solid #F8F8F8;
+    border-radius: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: -40%;
+    top: 10px; }
+
 body {
   color: #fff;
   font-family: arial, helvetica, sans-serif;
@@ -100,7 +144,7 @@ body, h1, h2, h3, h4, h5, h6 {
   /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
   padding-bottom: 50px;
   color: #f8f8f8;
-  background: url(../img/intro-bg.jpg) no-repeat center center;
+  background: url(/imgs/intro-bg.jpg) no-repeat center center;
   background-size: cover;
   text-align: center; }
 

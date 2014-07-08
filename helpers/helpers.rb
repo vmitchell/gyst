@@ -16,7 +16,7 @@ end
 
 helpers do 
     NO_LOGIN = "You need to have account, please log in or sign up" 
-    DEFAULT_USERNAME = "Task Friend"
+    DEFAULT_USERNAME = "friend"
     SECTION_IS_PRIVATE = "You need to be logged in to see that secion"
 
     include Rack::Utils

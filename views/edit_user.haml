@@ -1,10 +1,10 @@
 %section
     %h1
         Edit your profile
-    %form{:action => "/user/#{logged_in_user.id}/edit", :method => "post"}
-        %label{:for =>"name"} Name:
-        %input{:type => "text", :name => "name", :id => "name", :value => "#{logged_in_user.name}"}
-        %label{:for =>"password"} Password:
+    %form{action: "/user/#{logged_in_user.id}/edit", method: "post"}
+        %label{for: "name"} Name:
+        %input{type: "text", name: "name", id: "name", value: "#{logged_in_user.name}"}
+        %label{for: "password"} Password:
         %input{type:"password", name: "password", id: "password", required: "true"}
         %select{name: "timezone", id: "timezone"}
             - Timezone::Zone.names.each do | timezone | 
