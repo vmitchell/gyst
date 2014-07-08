@@ -1,314 +1,48 @@
-@import url(http://fonts.googleapis.com/css?family=Changa+One);
+/*
+Syntax error: Invalid CSS after "...ily=Changa+One)": expected media query list, was ";"
+        on line 1 of public/stylesheets/css/style.css
 
+1: @import url(http://fonts.googleapis.com/css?family=Changa+One);
+2: .navbar.navbar-default .navbar-brand {
+3:   font-family: Changa One;
+4:   font-size: 4rem;
+5:   font-weight: lighter;
+6:   color: #b11111;
 
-.navbar.navbar-default {
-  .navbar-brand {
-    font-family: Changa One;
-    font-size: 4rem;
-    font-weight: lighter;
-    color: rgb(177,17,17);
-    position: relative;
-    top: -3px;
-  }
-  .nav-login-block {
-    margin-top: 5px;
-    position: relative;
-      .btn-logout,
-      .btn-login {
-      padding: 7px 10px;
-      margin-left: 10px;
-      border-radius: 5px;
-      background: rgb(255, 208, 60);
-      color: #fff;
-      border: 2px solid rgb(241, 226, 44);
-      &:hover {
-        text-decoration: none;
-      }
-    }
-    .alerts {
-      font-family: Changa One;
-      position: absolute;
-      left: -20%;
-      font-size: 1.6rem;
-      background: rgb(177,17,17);
-      border-radius: 50%;
-      width: 24px;
-      height: 22px;
-      top: 5px;
-      text-align: center;
-      color: white;
-    }
-    .user-pic {
-      border: 5px solid #F8F8F8;
-      border-radius: 100%;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      width: 70px;
-      height: 70px;
-      position: absolute;
-      left: -40%;
-      top: 10px;
-    }
-  }
-}
-
-
-body {
-  // background-color: #ACAFB8;
-  color: #fff;
-  font-family: arial, helvetica, sans-serif;
-  line-height: 1.4;
-  font-size: 0.6em;
-  // background-image: url("/imgs/bg.png");
-}
-
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-  .denied{
-    animation: shake 0.35s normal forwards ease-in-out;
-  }
-
-@keyframes shake {
-  0% { margin-left: 0 }
-  12% { margin-left: 0 }
-  25% { margin-left: -10px }
-  50% { margin-left: 10px }
-  75% { margin-left: -10px }
-  87% { margin-left: 0 }
-  100% { margin-left: 0 }
-}
-
-
-/////////////////////////////////////////////
-
-body {
-  font-family: Lato;
-}
-
-.container-profile {
-  width: 300px;
-}
-
-a {
-  display: inline-block;
-  transition: all ease 0.3s;
-}
-
-$coverImageHeight: 300px;
-
-.profile-box {
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  position: relative;
-  
-  .profile-picture {
-    position: absolute;
-    top: $coverImageHeight - 60px;
-    left: 50%;
-    margin-left: -55px;
-    
-    img {
-      border: 5px solid #fff;
-      border-radius: 100%;
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-      width: 100px;
-      height: 100px;
-    }
-  }
-}
-
-.profile-cover-image {
-  height: $coverImageHeight;
-  overflow: hidden;
-  
-  img {
-    width: 100%;
-  }
-}
-
-.profile-content {
-  padding: 40px 20px;
-  text-align: center;
-  
-  h1 {
-    font-weight: normal;
-    margin-bottom: 0.2em;
-  }
-  
-  p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #d2d2d2;
-  }
-  
-  .socials {
-    a {
-      color: #d2d2d2;
-      margin: 0 15px;
-      font-size: 1.6em;
-      transform: translateY(4px);
-      
-      &:hover {
-        color: #aaa;
-        transform: translateY(0);
-      }
-    }
-  }
-}
-
-//*888888888888888888888888888888888CSS
-
-body, html {
-  height: 100%;
-  width: 100%;
-}
-
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-}
-
-.lead {
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.intro-header {
-  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-  padding-bottom: 50px;
-  color: #f8f8f8;
-  background: url(/imgs/intro-bg.jpg) no-repeat center center;
-  background-size: cover;
-  text-align: center;
-}
-
-.intro-message {
-  position: relative;
-  padding-top: 20%;
-  padding-bottom: 20%;
-}
-
-.intro-message > h1 {
-  margin: 0;
-  font-size: 5em;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-}
-
-.intro-divider {
-  width: 400px;
-  border-top: 1px solid #f8f8f8;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.intro-message > h3 {
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-}
-
-@media (max-width: 767px) {
-  .intro-message {
-    padding-bottom: 15%;
-  }
-
-  .intro-message > h1 {
-    font-size: 3em;
-  }
-
-  ul.intro-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0;
-  }
-
-  ul.intro-social-buttons > li:last-child {
-    margin-bottom: 0;
-  }
-
-  .intro-divider {
-    width: 100%;
-  }
-}
-
-.network-name {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 2px;
-}
-
-.content-section-a {
-  background-color: #f8f8f8;
-  padding: 50px 0;
-}
-
-.content-section-b {
-  border-top: 1px solid #e7e7e7;
-  border-bottom: 1px solid #e7e7e7;
-  padding: 50px 0;
-}
-
-.section-heading {
-  margin-bottom: 30px;
-}
-
-.section-heading-spacer {
-  border-top: 3px solid #e7e7e7;
-  width: 200px;
-  float: left;
-}
-
-.banner {
-  padding: 100px 0;
-  color: #f8f8f8;
-  background: url(../img/banner-bg.jpg) no-repeat center center;
-  background-size: cover;
-}
-
-.banner h2 {
-  margin: 0;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-  font-size: 3em;
-}
-
-.banner ul {
-  margin-bottom: 0;
-}
-
-.banner-social-buttons {
-  float: right;
-  margin-top: 0;
-}
-
-@media (max-width: 1199px) {
-  ul.banner-social-buttons {
-    float: left;
-    margin-top: 15px;
-  } 
-}
-
-@media (max-width: 767px) {
-  .banner h2 {
-    margin: 0;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-    font-size: 3em;
-  }
-
-  ul.banner-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0;
-  }
-
-  ul.banner-social-buttons > li:last-child {
-    margin-bottom: 0;
-  } 
-}
-
-footer {
-  background-color: #f8f8f8;
-  padding: 50px 0;
-}
-
-p.copyright {
-  margin: 15px 0 0;
-}
+Backtrace:
+public/stylesheets/css/style.css:1
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/scss/parser.rb:1312:in `expected'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/scss/parser.rb:1248:in `expected'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/scss/parser.rb:65:in `parse_media_query_list'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:1019:in `parse_import_arg'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:986:in `block in parse_import_directive'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:985:in `loop'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:985:in `parse_import_directive'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:806:in `parse_directive'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:653:in `parse_line'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:543:in `build_tree'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:562:in `block in append_children'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:561:in `each'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:561:in `append_children'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:412:in `_to_tree'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/engine.rb:274:in `render'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/plugin/compiler.rb:378:in `update_stylesheet'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/plugin/compiler.rb:186:in `each'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/plugin/compiler.rb:221:in `watch'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/plugin.rb:108:in `method_missing'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/exec.rb:509:in `watch_or_update'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/exec.rb:346:in `process_result'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/exec.rb:43:in `parse'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/lib/sass/exec.rb:22:in `parse!'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/gems/sass-3.3.9/bin/sass:13:in `<top (required)>'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/bin/sass:23:in `load'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/bin/sass:23:in `<main>'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/bin/ruby_executable_hooks:15:in `eval'
+/home/valmitchell/.rvm/gems/ruby-2.0.0-p481/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"...ily=Changa+One)\": expected media query list, was \";\"\A         on line 1 of public/stylesheets/css/style.css\A \A 1: @import url(http://fonts.googleapis.com/css?family=Changa+One);\A 2: .navbar.navbar-default .navbar-brand {\A 3:   font-family: Changa One;\A 4:   font-size: 4rem;\A 5:   font-weight: lighter;\A 6:   color: #b11111;"; }

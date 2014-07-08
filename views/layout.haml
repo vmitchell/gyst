@@ -28,7 +28,7 @@
                                 = link_to '/signup' , "Login/Sign Up", {class: "btn-login"}
     %header
         .container
-            .header-wrapper
+            .messages
                 - if  !session[:message].nil? && !session[:message].empty?
                     .alert.alert-success  
                         = session[:message]
