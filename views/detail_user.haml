@@ -60,8 +60,6 @@
                             %span - #{circle.users.count}
                             = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
                             = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
-            - if you 
-                %a{href: "/circle/create"} Create a circle
         .user-tasks.col-lg-9.col-md-9
             -if you
                 %h1.text-center.act-header Tasks
