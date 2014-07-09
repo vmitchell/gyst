@@ -1,15 +1,17 @@
 %section.edit-profile
     %form{action: "/user/#{logged_in_user.id}/edit", method: "post"}
         %label{for: "name"} Name:
-        %input{type: "text", name: "name", id: "name", value: "#{logged_in_user.name}"}
+        %input{type: "text", name: "name", id: "name", value: "#{logged_in_user.name}", required: "true"}
         %label{for: "password"} Password:
-        %input{type:"password", name: "password", id: "password", required: "true"}
+        %input{type:"password", name: "password", id: "password"}
         %label{for: "password"} Confirm password:
-        %input{type:"password", name: "password-confirm", id: "password_confirm", required: "true"}
+        %input{type:"password", name: "password_confirm", id: "password_confirm"}
         %select{name: "timezone", id: "timezone"}
-            - Timezone::Zone.names.each do | timezone | 
+            - list_timezones.each do | timezone | 
+                - timezone_country = timezone.to_s.split("/")
+                - timezone_name = timezone_country[1]
+                - if !timezone_name.nil?
+                    %option{name: "timezone", value: "#{timezone}"} #{timezone_name}
                 - if logged_in_user.timezone == timezone
-                    %option{name: "timezone", selected: true} #{timezone}
-                - else 
-                    %option{name: "timezone"} #{timezone}
+                    %option{name: "timezone", selected: true, value: "#{timezone}"} #{timezone_name}
         %input{type: 'submit', value: 'Done with edits'}

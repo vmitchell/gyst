@@ -87,8 +87,20 @@ helpers do
         end
     end
 
+    def list_timezones
+        Timezone::Zone.names.sort_by(&:downcase).uniq
+    end
+
     def show_message message
         session.merge!(message: message)
+    end
+
+    def print_errors
+        if !@errors.nil?
+            @errors.each do | error | 
+                error
+            end
+        end
     end
 
     def show_error error

@@ -16,6 +16,7 @@ end
 
 post '/user/create' do
     user = User.create params
+    user.timezone 
     user.password_hash = BCrypt::Password.create(params[:password])
     user.picture = rand(1..9)
     if user.save
@@ -34,11 +35,11 @@ end
 
 post '/user/:user_id/edit' do
     user = User.find_by_id logged_in_user.id
-    if params[:password] != params[:password_confirm]
+    if !params[:password].empty? && params[:password] != params[:password_confirm] 
         show_error "Please make sure you confirmed your password"
         redirect user_page
     end
-    if user.id == params[:user_id].to_i && 
+    if user.id == params[:user_id].to_i && !params[:password].empty?
         user.update(name: params[:name])
         user.update(password_hash: BCrypt::Password.create(params[:password]))
         user.update(timezone: params[:timezone])
@@ -49,6 +50,7 @@ post '/user/:user_id/edit' do
             redirect user_page
         end
     else
+        show_error "Please fill in the password"
         session[:error] = user.errors.full_messages
         redirect user_page
     end

@@ -10,8 +10,11 @@
         %label{:for =>"password"} password:
         %input{:type => "password", :name => "password", :id => "password", required: "true"}
         %select{name: "timezone", id: "timezone"}
-            - Timezone::Zone.names.each do | timezone | 
-                %option{name: "timezone", value: "#{timezone}"} #{timezone}
+            - list_timezones.each do | timezone | 
+                - timezone_country = timezone.to_s.split("/")
+                - timezone_name = timezone_country[1]
+                - if !timezone_name.nil?
+                    %option{name: "timezone", value: "#{timezone}"} #{timezone_name}
         %input{:type => "submit"}
     %h1 Login ("I have an account")
     %form{:action => "/user/login", :method => "post"}

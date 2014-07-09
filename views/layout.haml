@@ -33,14 +33,11 @@
                     .alert.alert-success  
                         = session[:message]
                 - session[:message] = ""
-                -if @errors.nil?
-                    -if !session[:error].nil? && !session[:error].empty?
-                        .alert.alert-danger
-                            = session[:error]
-                    - session[:error] = ""
-                - else
-                    - @errors.each do |e|
-                        = e
+                = print_errors
+                -if !session[:error].nil? && !session[:error].empty?
+                    .alert.alert-danger
+                        = session[:error]
+                - session[:error] = ""
             = yield
     %footer
         .container
