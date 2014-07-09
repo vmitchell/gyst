@@ -34,18 +34,23 @@ end
 
 post '/user/:user_id/edit' do
     user = User.find_by_id logged_in_user.id
-    if user.id == params[:user_id].to_i
+    if params[:password] != params[:password_confirm]
+        show_error "Please make sure you confirmed your password"
+        redirect user_page
+    end
+    if user.id == params[:user_id].to_i && 
         user.update(name: params[:name])
         user.update(password_hash: BCrypt::Password.create(params[:password]))
         user.update(timezone: params[:timezone])
         if user.save
             session[:username] = user.username
             session[:password] = user.password
+            show_message "Your profile has been edited succsessfully"
             redirect user_page
-        else
-            @errors = user.errors.full_messages
-            haml :edit_user
         end
+    else
+        session[:error] = user.errors.full_messages
+        redirect user_page
     end
 end
 

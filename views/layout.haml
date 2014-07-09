@@ -8,7 +8,7 @@
                     %span.icon-bar
                     %span.icon-bar
                 %a.navbar-brand{href: "/"} gyst
-            .collapse.navbar-collapse.navbar-right.navbar-ex1-collapse
+            .navbar-right.navbar-ex1-collapse
                 %ul.nav.navbar-nav
                     %li  
                         - if is_logged_in?
@@ -17,9 +17,9 @@
                                     %img{src: "/imgs/lego_faces/#{logged_in_user.picture}.jpg", class: "user-pic"}
                                     %a{href: "/user/#{logged_in_user.id}/alerts", class: "alerts"} 
                                         = get_reminders.size
-                                = link_to "/user/#{logged_in_user.id}", username
-                                = link_to "/user/#{logged_in_user.id}/edit", "(edit)"
-                                = link_to '/logout', "Log Out", class: "btn-logout"
+                                    Welcome, 
+                                    = link_to "/user/#{logged_in_user.id}", username
+                                %a{href: "/logout", alt: "Log Out", class: "icon icon-exit"}
                                 
                         - else
                             .nav-login-block
@@ -33,10 +33,14 @@
                     .alert.alert-success  
                         = session[:message]
                 - session[:message] = ""
-                -if @errors
-                    - @errors.each do |e|
+                -if @errors.nil?
+                    -if !session[:error].nil? && !session[:error].empty?
                         .alert.alert-danger
-                            = e
+                            = session[:error]
+                    - session[:error] = ""
+                - else
+                    - @errors.each do |e|
+                        = e
             = yield
     %footer
         .container

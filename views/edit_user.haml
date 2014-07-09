@@ -1,11 +1,11 @@
-%section
-    %h1
-        Edit your profile
+%section.edit-profile
     %form{action: "/user/#{logged_in_user.id}/edit", method: "post"}
         %label{for: "name"} Name:
         %input{type: "text", name: "name", id: "name", value: "#{logged_in_user.name}"}
         %label{for: "password"} Password:
         %input{type:"password", name: "password", id: "password", required: "true"}
+        %label{for: "password"} Confirm password:
+        %input{type:"password", name: "password-confirm", id: "password_confirm", required: "true"}
         %select{name: "timezone", id: "timezone"}
             - Timezone::Zone.names.each do | timezone | 
                 - if logged_in_user.timezone == timezone

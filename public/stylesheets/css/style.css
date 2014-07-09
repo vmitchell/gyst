@@ -1,4 +1,61 @@
 @import url(http://fonts.googleapis.com/css?family=Changa+One);
+@font-face {
+  font-family: 'gyst';
+  src: url("/fonts/gyst.eot?-a7x3am");
+  src: url("/fonts/gyst.eot?#iefix-a7x3am") format("embedded-opentype"), url("/fonts/gyst.woff?-a7x3am") format("woff"), url("/fonts/gyst.ttf?-a7x3am") format("truetype"), url("/fonts/gyst.svg?-a7x3am#gyst") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+.icon {
+  font-family: 'gyst';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-bullhorn:before {
+  content: "\e600"; }
+
+.icon-location:before {
+  content: "\e601"; }
+
+.icon-compass:before {
+  content: "\e602"; }
+
+.icon-alarm:before {
+  content: "\e603"; }
+
+.icon-alarm2:before {
+  content: "\e604"; }
+
+.icon-calendar:before {
+  content: "\e605"; }
+
+.icon-spinner:before {
+  content: "\e606"; }
+
+.icon-eye:before {
+  content: "\e607"; }
+
+.icon-eye-blocked:before {
+  content: "\e608"; }
+
+.icon-info:before {
+  content: "\e609"; }
+
+.icon-exit:before {
+  content: "\e60a"; }
+
+.icon-instagram:before {
+  content: "\e60b"; }
+
+.icon-foursquare:before {
+  content: "\e60c"; }
+
 .navbar.navbar-default .navbar-brand {
   font-family: Changa One;
   font-size: 4rem;
@@ -9,7 +66,6 @@
 .navbar.navbar-default .nav-login-block {
   margin-top: 5px;
   position: relative; }
-  .navbar.navbar-default .nav-login-block .btn-logout,
   .navbar.navbar-default .nav-login-block .btn-login {
     padding: 7px 10px;
     margin-left: 10px;
@@ -17,13 +73,19 @@
     background: #ffd03c;
     color: #fff;
     border: 2px solid #f1e22c; }
-    .navbar.navbar-default .nav-login-block .btn-logout:hover,
     .navbar.navbar-default .nav-login-block .btn-login:hover {
+      text-decoration: none; }
+  .navbar.navbar-default .nav-login-block .icon-exit {
+    font-size: 2.5rem;
+    margin-top: 8px;
+    margin-left: 5px;
+    color: #444; }
+    .navbar.navbar-default .nav-login-block .icon-exit:hover {
       text-decoration: none; }
   .navbar.navbar-default .nav-login-block .alerts {
     font-family: Changa One;
     position: absolute;
-    left: -20%;
+    left: -40px;
     font-size: 1.6rem;
     background: #b11111;
     border-radius: 50%;
@@ -39,8 +101,23 @@
     width: 70px;
     height: 70px;
     position: absolute;
-    left: -40%;
+    left: -80px;
     top: 10px; }
+
+#user-profile .username {
+  font-size: 1.3rem;
+  color: #ccc; }
+#user-profile div.email {
+  font-size: 1.3rem;
+  color: #ccc; }
+#user-profile .name {
+  font-size: 3rem;
+  font-family: "Helvetica", "Arial", "sans-serif";
+  color: #444;
+  padding: 5px 0; }
+#user-profile .location {
+  padding: 5px 0;
+  color: #444; }
 
 body {
   color: #fff;

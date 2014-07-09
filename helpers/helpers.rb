@@ -91,6 +91,10 @@ helpers do
         session.merge!(message: message)
     end
 
+    def show_error error
+        session.merge!(error: error)
+    end
+
     def include_partial haml_file
         Haml::Engine.new(File.read("./views/#{haml_file}.haml")).render
     end

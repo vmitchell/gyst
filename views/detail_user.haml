@@ -1,60 +1,36 @@
 %section.user_info.row
-    - if is_logged_in?
-        = logged_in_user.timezone
     .container-profile.col-lg-3.col-m-3
         .profile-box
             .profile-cover-image
-                %img{src: "/imgs/lego_faces/#{@user.picture}.jpg"} 
-            .profile-picture
-                %img{src: "/imgs/lego_faces/#{@user.picture}.jpg"}
-        .profile-content
-            %h1 
-                = "#{@user.name}"
-            %p 
-                = "#{@user.email}"
-            .socials
-            %a{href: "#"}
-                %i.fa.fa-dribbble
-            %a{href: "#"}
-                %i.fa.fa-twitter
-            %a{href: "#"}
-                %i.fa.fa-github
+                %img{src: "/imgs/lego_faces/#{@user.picture}.jpg", class: "img-responsive"} 
     .profile-details.col-lg-9.col-m-9
         #user-profile
             .row
                 %ul.nav.nav-tabs.col-md-12
                     %li.active
                         %a{href: "#profile-info", data: {toggle: "tab"}} Profile
-                    %li
-                        %a{href: "#profile-edit", data: {toggle: "tab"}} Edit Profile
+                    - if you
+                        %li
+                            %a{href: "#profile-edit", data: {toggle: "tab"}} Edit Profile
             .row
                 #profile.tab-content.col-md-12
                     #profile-info.tab-pane.active-in.active
-                        -if you
-                            %h1 Your Tasks
-                            - if @user.tasks.empty? 
-                                = "no TASKS ;("
-                            - @user.tasks.order("created_at DESC").all.each do |task| 
-                                %ul
-                                    %li
-                                        = h task.name
-                                        - date = task.due
-                                        - if !date.nil?
-                                            = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
-                                        = link_to "/task/#{task.id}/edit" ,"edit" if you
-                                        = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
+                        .pull-right
+                            .username.text-right
+                                = @user.username
+                            - if you
+                                .email.text-right
+                                    %span.icon.icon-eye-blocked
+                                    %span.email
+                                        = @user.email
+                        .name
+                            = @user.name
+                        .location
+                            %span.icon.icon-location
+                            %span.timezone
+                                = @user.timezone
                     #profile-edit.tab-pane.fade 
-                        - if you && @user.circles.empty? 
-                            %h1
-                                no CIRCLES ;(
-                        - elsif
-                            %h1 your CIRCLES
-                            %ul
-                                - @user.circles.all.each do |circle| 
-                                    %li
-                                        = link_to "/circle/#{circle.id}", "#{circle.name}"
-                                        = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
-                                        = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
+                        = haml :edit_user, :layout => false
 -if you
     %h1 Your Tasks
     - if @user.tasks.empty? 
