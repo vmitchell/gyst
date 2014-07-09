@@ -64,7 +64,7 @@ post '/user/login' do
         logged_in_user
         redirect user_page
     else 
-        @errors = ['WRONG, lousy guess']
+        show_error 'WRONG, lousy guess'
         haml :create_user
     end
 end

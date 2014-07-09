@@ -2,10 +2,7 @@
     %form{action: "/user/#{logged_in_user.id}/edit", method: "post"}
         %label{for: "name"} Name:
         %input{type: "text", name: "name", id: "name", value: "#{logged_in_user.name}", required: "true"}
-        %label{for: "password"} Password:
-        %input{type:"password", name: "password", id: "password"}
-        %label{for: "password"} Confirm password:
-        %input{type:"password", name: "password_confirm", id: "password_confirm"}
+        %label{for: "password"} Timezone:
         %select{name: "timezone", id: "timezone"}
             - list_timezones.each do | timezone | 
                 - timezone_country = timezone.to_s.split("/")
@@ -14,4 +11,9 @@
                     %option{name: "timezone", value: "#{timezone}"} #{timezone_name}
                 - if logged_in_user.timezone == timezone
                     %option{name: "timezone", selected: true, value: "#{timezone}"} #{timezone_name}
+        .password-group
+            %label{for: "password"} Password:
+            %input{type:"password", name: "password", id: "password"}
+            %label{for: "password"} Confirm password:
+            %input{type:"password", name: "password_confirm", id: "password_confirm"}
         %input{type: 'submit', value: 'Done with edits'}

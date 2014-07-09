@@ -39,7 +39,8 @@ post  "/task/:task_id/edit" do
             alert.destroy
         end
         session[:message] = 'Your task was successfully edited.'
-        redirect "/task/#{@task.id}/edit"
+        redirect user_page
+        # redirect "/task/#{@task.id}/edit"
     else
         @errors = @task.errors.full_messages
         haml :edit_task

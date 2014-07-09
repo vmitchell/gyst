@@ -5,13 +5,13 @@
                 %img{src: "/imgs/lego_faces/#{@user.picture}.jpg", class: "img-responsive"} 
     .profile-details.col-lg-9.col-m-9
         #user-profile
-            .row
-                %ul.nav.nav-tabs.col-md-12
-                    %li.active
-                        %a{href: "#profile-info", data: {toggle: "tab"}} Profile
-                    - if you
-                        %li
-                            %a{href: "#profile-edit", data: {toggle: "tab"}} Edit Profile
+            - if you
+                .row
+                    %ul.nav.nav-tabs.col-md-12
+                        %li.active
+                            %a{href: "#profile-info", data: {toggle: "tab"}} Profile
+                            %li
+                                %a{href: "#profile-edit", data: {toggle: "tab"}} Edit Profile
             .row
                 #profile.tab-content.col-md-12
                     #profile-info.tab-pane.active-in.active
@@ -29,61 +29,52 @@
                             %span.icon.icon-location
                             %span.timezone
                                 = @user.timezone
-                        - if @user.alerts.find_by_alert_type("request").nil? 
-                            %h4 no Notifications
-                        - else
-                            %h1 Your Notifications
-                            - @user.alerts.order("created_at DESC").all.each do |alert| 
-                                - if alert.alert_type == "request"
-                                    %ul{class: 'messages'}
-                                        %li
-                                            = h alert.message
-                                            = link_to "/circle/invite/accept/#{alert.id}", "Accept"
-                                            = link_to "/circle/invite/decline/#{alert.id}", "Decline"
+                        - if you
+                            - if @user.alerts.find_by_alert_type("request").nil? 
+                                %h4 Notifications:
+                                .div.nothing-in No notifications.
+                            - else
+                                %h4 Notifications:
+                                - @user.alerts.order("created_at DESC").all.each do |alert| 
+                                    - if alert.alert_type == "request"
+                                        %ul{class: 'messages'}
+                                            %li
+                                                = h alert.message
+                                                = link_to "/circle/invite/accept/#{alert.id}", "Accept", {class: "accept"}
+                                                = link_to "/circle/invite/decline/#{alert.id}", "Decline", {class: "decline"}
                     #profile-edit.tab-pane.fade 
                         = haml :edit_user, :layout => false
-.row
-    .user-circles.col-lg-3.col-m-3
-        - if you && @user.circles.empty? 
-            %h1
-                no CIRCLES ;(
-        - elsif
-            %h1 your CIRCLES
-            %ul
-                - @user.circles.all.each do |circle| 
-                    %li
-                        = link_to "/circle/#{circle.id}", "#{circle.name}"
-                        = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
-                        = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
-        - if you 
-            %a{href: "/circle/create"} Create a circle
-    .user-tasks.col-lg-9.col-md-9
-        -if you
-            %h1.text-center Your Tasks
-            - if @user.tasks.empty? 
-                = "no TASKS ;("
-            - @user.tasks.order("created_at DESC").all.each do |task| 
+.row.user-act
+    - if you
+        .user-circles.col-lg-3.col-m-3
+            - if you && @user.circles.empty? 
+                %h1.text-center.act-header Circles
+                %span no circles
+            - elsif
+                %h1.text-center.act-header Circles
                 %ul
-                    %li
-                        = h task.name
-                        - date = task.due
-                        - if !date.nil?
-                            = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
-                        = link_to "/task/#{task.id}/edit" ,"edit" if you
-                        = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
-        %section
-            = haml :create_task, :layout => false
-        - if @user.circles.empty? 
-            = "no tasks not even shared ;("
-        - else
-            %ul
-                -@user.circles.each do | circle | 
-                    - circle.tasks.order("due DESC").all.each do |task| 
-                        -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60)
-                            %li
-                                = h task.name
-                                - date = task.due
-                                - if !date.nil?
-                                    = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
-                            / = link_to "/task/#{task.id}/edit" ,"edit" if you
-                            / = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
+                    - @user.circles.all.each do |circle| 
+                        %li
+                            = link_to "/circle/#{circle.id}", "#{circle.name}"
+                            %span - #{circle.users.count}
+                            = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
+                            = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
+            - if you 
+                %a{href: "/circle/create"} Create a circle
+        .user-tasks.col-lg-9.col-md-9
+            -if you
+                - if @user.tasks.empty? 
+                    %h1.text-center.act-header Tasks
+                    %span no tasks
+                %h1.text-center.act-header Tasks
+                - @user.tasks.order("created_at DESC").all.each do |task| 
+                    %ul
+                        %li
+                            = h task.name
+                            - date = task.due
+                            - if !date.nil?
+                                = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
+                            = link_to "/task/#{task.id}/edit" ,"edit" if you
+                            = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
+                %section
+                    = haml :create_task, :layout => false

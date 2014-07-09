@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway);
 @import url(http://fonts.googleapis.com/css?family=Changa+One);
 @font-face {
   font-family: 'gyst';
@@ -66,6 +67,17 @@
 .navbar.navbar-default .nav-login-block {
   margin-top: 5px;
   position: relative; }
+  .navbar.navbar-default .nav-login-block .btn-add-user {
+    position: absolute;
+    left: -115px;
+    top: -30px;
+    font-size: 7rem;
+    width: 30px;
+    height: 30px;
+    color: #b11111; }
+    .navbar.navbar-default .nav-login-block .btn-add-user:hover {
+      color: #b11111;
+      text-decoration: none; }
   .navbar.navbar-default .nav-login-block .btn-login {
     padding: 7px 10px;
     margin-left: 10px;
@@ -105,10 +117,10 @@
     top: 10px; }
 
 #user-profile .username {
-  font-size: 1.3rem;
+  font-size: 2rem;
   color: #ccc; }
 #user-profile div.email {
-  font-size: 1.3rem;
+  font-size: 2rem;
   color: #ccc; }
 #user-profile .name {
   font-size: 3rem;
@@ -119,11 +131,17 @@
   padding: 5px 0;
   color: #444; }
 
-body {
-  color: #fff;
-  font-family: arial, helvetica, sans-serif;
-  line-height: 1.4;
-  font-size: 0.6em; }
+.user-act .act-header {
+  background: #f8f8f8;
+  border-bottom: 1px solid #e7e7e7;
+  border-top: 5px solid #b11111;
+  padding: 3px 0; }
+
+html body {
+  font-family: "Raleway", "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333; }
 
 *, *:before, *:after {
   box-sizing: border-box; }
@@ -152,11 +170,8 @@ body {
 
   100% {
     margin-left: 0; } }
-body {
-  font-family: Lato; }
-
 .container-profile {
-  width: 300px; }
+  width: 263px; }
 
 a {
   display: inline-block;
@@ -169,7 +184,7 @@ a {
   position: relative; }
   .profile-box .profile-picture {
     position: absolute;
-    top: 240px;
+    top: 203px;
     left: 50%;
     margin-left: -55px; }
     .profile-box .profile-picture img {
@@ -178,149 +193,3 @@ a {
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
       width: 100px;
       height: 100px; }
-
-.profile-cover-image {
-  height: 300px;
-  overflow: hidden; }
-  .profile-cover-image img {
-    width: 100%; }
-
-.profile-content {
-  padding: 40px 20px;
-  text-align: center; }
-  .profile-content h1 {
-    font-weight: normal;
-    margin-bottom: 0.2em; }
-  .profile-content p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #d2d2d2; }
-  .profile-content .socials a {
-    color: #d2d2d2;
-    margin: 0 15px;
-    font-size: 1.6em;
-    transform: translateY(4px); }
-    .profile-content .socials a:hover {
-      color: #aaa;
-      transform: translateY(0); }
-
-body, html {
-  height: 100%;
-  width: 100%; }
-
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700; }
-
-.lead {
-  font-size: 18px;
-  font-weight: 400; }
-
-.intro-header {
-  padding-top: 50px;
-  /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-  padding-bottom: 50px;
-  color: #f8f8f8;
-  background: url(/imgs/intro-bg.jpg) no-repeat center center;
-  background-size: cover;
-  text-align: center; }
-
-.intro-message {
-  position: relative;
-  padding-top: 20%;
-  padding-bottom: 20%; }
-
-.intro-message > h1 {
-  margin: 0;
-  font-size: 5em;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); }
-
-.intro-divider {
-  width: 400px;
-  border-top: 1px solid #f8f8f8;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
-
-.intro-message > h3 {
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); }
-
-@media (max-width: 767px) {
-  .intro-message {
-    padding-bottom: 15%; }
-
-  .intro-message > h1 {
-    font-size: 3em; }
-
-  ul.intro-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0; }
-
-  ul.intro-social-buttons > li:last-child {
-    margin-bottom: 0; }
-
-  .intro-divider {
-    width: 100%; } }
-.network-name {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 2px; }
-
-.content-section-a {
-  background-color: #f8f8f8;
-  padding: 50px 0; }
-
-.content-section-b {
-  border-top: 1px solid #e7e7e7;
-  border-bottom: 1px solid #e7e7e7;
-  padding: 50px 0; }
-
-.section-heading {
-  margin-bottom: 30px; }
-
-.section-heading-spacer {
-  border-top: 3px solid #e7e7e7;
-  width: 200px;
-  float: left; }
-
-.banner {
-  padding: 100px 0;
-  color: #f8f8f8;
-  background: url(../img/banner-bg.jpg) no-repeat center center;
-  background-size: cover; }
-
-.banner h2 {
-  margin: 0;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-  font-size: 3em; }
-
-.banner ul {
-  margin-bottom: 0; }
-
-.banner-social-buttons {
-  float: right;
-  margin-top: 0; }
-
-@media (max-width: 1199px) {
-  ul.banner-social-buttons {
-    float: left;
-    margin-top: 15px; } }
-@media (max-width: 767px) {
-  .banner h2 {
-    margin: 0;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-    font-size: 3em; }
-
-  ul.banner-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0; }
-
-  ul.banner-social-buttons > li:last-child {
-    margin-bottom: 0; } }
-footer {
-  background-color: #f8f8f8;
-  padding: 50px 0; }
-
-p.copyright {
-  margin: 15px 0 0; }
