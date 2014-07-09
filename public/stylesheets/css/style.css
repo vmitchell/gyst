@@ -137,6 +137,11 @@
   border-top: 5px solid #b11111;
   padding: 3px 0; }
 
+.alert-success {
+  background-color: #BBF1A5;
+  border-color: #d6e9c6;
+  color: #3c763d; }
+
 html body {
   font-family: "Raleway", "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;

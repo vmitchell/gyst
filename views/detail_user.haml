@@ -52,6 +52,7 @@
                 %span no circles
             - elsif
                 %h1.text-center.act-header Circles
+                = haml :create_circle, :layout => false
                 %ul
                     - @user.circles.all.each do |circle| 
                         %li
@@ -63,10 +64,10 @@
                 %a{href: "/circle/create"} Create a circle
         .user-tasks.col-lg-9.col-md-9
             -if you
-                - if @user.tasks.empty? 
-                    %h1.text-center.act-header Tasks
-                    %span no tasks
                 %h1.text-center.act-header Tasks
+                - if @user.tasks.empty? 
+                    %span no tasks
+                = haml :create_task, :layout => false
                 - @user.tasks.order("created_at DESC").all.each do |task| 
                     %ul
                         %li
@@ -76,5 +77,3 @@
                                 = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
                             = link_to "/task/#{task.id}/edit" ,"edit" if you
                             = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
-                %section
-                    = haml :create_task, :layout => false

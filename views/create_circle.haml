@@ -1,5 +1,3 @@
-Create a circle
-%form{:action => "/circle/create", :method => "post"}
-    %label{for: "name"} Name:
-    %input{type: "text", name: "name", id: "name"}
-    %input{type: "submit"}
+%form{action: "/circle/create", method: "post"}
+    %input{type: "text", name: "name", id: "name", placeholder: " Name of circle"}
+    %input{type: "submit", value: "Create circle"} 

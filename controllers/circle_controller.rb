@@ -8,11 +8,10 @@ post "/circle/create" do
     circle.creator_id = logged_in_user.id
     if circle.save
         logged_in_user.circles << circle
-        session[:message] = 'Creation of the CIRCLE was successfull, my lord.'
+        show_message "Circle has been created successfully."
         redirect user_page
     else
-        session[:message] = circle.errors.inspect
-        session[:message]
+        show_error circle.errors.full_messages.first
         redirect user_page
     end
 end
@@ -32,24 +31,27 @@ post  "/circle/:circle_id/edit" do
     circle = logged_in_user.circles.find_by_id params[:circle_id]
     circle[:name] = params[:name]
     if circle.save
-       session[:message] = 'Your circle was successfully edited.'
-       redirect user_page
+        show_message 'Your circle was successfully edited.'
+        redirect user_page
     else
-       session[:message] = "WRONG"
+        show_error "WRONG"
     end
 end
 
 get "/circle/:circle_id/delete" do
     #validation
     circle = logged_in_user.circles.find_by_id params[:circle_id]
-    if !circe.nil?
+    if !circle.nil?
         cirlce = Circle.find_by_id params[:circle_id]
         alert = Alert.find_by_add_to_circle_id cirlce.id
         if !alert.nil? && alert.add_to_circle_id == circle.id
             alert.destroy
-            session[:message]  = "Circle has been deleted."
         end
         circle.tasks.destroy
+        circle.destroy
+        show_message "Circle has been deleted."
+    else
+        show_error "Oops.. Something went wrong"
     end
     redirect user_page
 end
