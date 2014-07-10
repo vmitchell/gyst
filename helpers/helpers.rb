@@ -4,8 +4,6 @@ configure do
     set :haml, :layout => :'/layout'
     Time.zone =  'UTC'
     ActiveRecord::Base.default_timezone = :utc
-    # ActiveRecord::Base.time_zone_aware_attributes = true
-    # Pony.options = { :from => 'noreply@example.com', :via => :smtp, :via_options => { :host => 'smtp.yourserver.com' } }
 end
 
 before do
@@ -37,7 +35,7 @@ helpers do
             "/user/#{logged_in_user.id}"
         else
             show_message SECTION_IS_PRIVATE
-            "/"
+            redirect "/"
         end
     end
 
@@ -45,7 +43,7 @@ helpers do
         session[:username] && session[:password] ?  true : false
     end
 
-      def logged_in_user #execute
+      def logged_in_user
         if is_logged_in?
             logged_in_user = User.find_by_username session[:username]
         else

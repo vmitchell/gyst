@@ -14,7 +14,7 @@ post "/task/create" do
         circle.tasks << task
     end
     if task.save
-      session[:message] = "Creation of the task was successfull, my lord. #{task.due.inspect}"
+      session[:message] = "Creation of the task was successfull, my lord."
       redirect user_page
     else
       session[:message] = task.errors

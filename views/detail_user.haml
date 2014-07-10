@@ -31,10 +31,10 @@
                                 = @user.timezone
                         - if you
                             - if @user.alerts.find_by_alert_type("request").nil? 
-                                %h4 Notifications:
-                                .div.nothing-in No notifications.
+                                %h4 Circle invites:
+                                .div.nothing-in No invites.
                             - else
-                                %h4 Notifications:
+                                %h4 Circle invites:
                                 - @user.alerts.order("created_at DESC").all.each do |alert| 
                                     - if alert.alert_type == "request"
                                         %ul{class: 'messages'}

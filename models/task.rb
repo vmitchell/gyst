@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
     include BCrypt
 
     has_and_belongs_to_many :circles
-    has_many :tasks
+    has_many :tasks, dependent: :destroy
     has_many :alerts
 
     validates :name, :presence => :true, length:{minimum: 1}
@@ -31,7 +31,7 @@ class Task < ActiveRecord::Base
 end
 
 class Circle < ActiveRecord::Base
-    has_many :tasks
+    has_many :tasks, dependent: :destroy
     has_and_belongs_to_many :users
     validates :name, presence: true
 

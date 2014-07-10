@@ -3,27 +3,21 @@ require 'evernote_oauth'
 get "/" do
     @users = User.all
     @tasks = Task.all
-    token = session[:evernote_token].token
-    client = EvernoteOAuth::Client.new(token: token)
-    note_store = client.note_store
-    filter = Evernote::EDAM::NoteStore::NoteFilter.new
-
-    @notebooks = note_store.listNotebooks  token
-
-# List all of the notebooks in the user's account
- 
-# Get all the notes for a notebook
-@notes = note_store.findNotes(token, filter, nil, 10) 
-# Display the notes
-@content = []
-@notes.notes.each do |note|
-  # puts note.title
-  # puts note.guid
-  # @content << note.attributes
- @content << note_store.getNoteContent(token, note.guid)
-end
+    # token = session[:evernote_token].token
+    # client = EvernoteOAuth::Client.new(token: token)
+    # note_store = client.note_store
+    # filter = Evernote::EDAM::NoteStore::NoteFilter.new
+#     @notebooks = note_store.listNotebooks  token
+# # Get all the notes for a notebook
+#     @notes = note_store.findNotes(token, filter, nil, 10) 
+#     # Display the notes
+#     @content = []
+#     @notes.notes.each do |note|
+#   # puts note.title
+#   # puts note.guid
+#     @content << note_store.getNoteContent(token, note.guid)
+#     end
     haml :index
-
 end
 
 get "/user/:id" do
@@ -58,7 +52,7 @@ end
 post '/user/:user_id/edit' do
     user = User.find_by_id logged_in_user.id
     if !params[:password].empty? && params[:password] != params[:password_confirm] 
-        show_error "Please make sure you confirmed your password"
+        show_error "Please make sure your password and it's confirmation match"
         redirect user_page
     end
     if user.id == params[:user_id].to_i && !params[:password].empty?
@@ -108,5 +102,3 @@ get '/evernote/auth' do
     session[:evernote_token] = access_token
     redirect '/'
 end
-
-# ///////////////////////////

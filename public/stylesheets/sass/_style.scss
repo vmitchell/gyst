@@ -6,6 +6,10 @@
     color: rgb(177,17,17);
     position: relative;
     top: -3px;
+&:hover {
+      animation: gyst 4s normal forwards ease-in-out;
+    -webkit-animation: gyst 4s normal forwards ease-in-out;
+}
   }
   .nav-login-block {
     margin-top: 5px;
@@ -29,7 +33,6 @@
       border-radius: 5px;
       background: rgb(255, 208, 60);
       color: #fff;
-      border: 2px solid rgb(241, 226, 44);
       &:hover {
         text-decoration: none;
       }
@@ -105,9 +108,7 @@
   border-color: #d6e9c6;
   color: #3c763d;
 }
-
 html body {
-  // background-color: #ACAFB8;
   font-family: "Raleway", "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
@@ -118,20 +119,32 @@ html body {
 *, *:before, *:after {
   box-sizing: border-box;
 }
+
 .denied{
-  animation: shake 0.35s normal forwards ease-in-out;
+  animation: gyst 0.35s normal forwards ease-in-out;
 }
 
-@keyframes shake {
-  0% { margin-left: 0 }
-  12% { margin-left: 0 }
-  25% { margin-left: -10px }
-  50% { margin-left: 10px }
-  75% { margin-left: -10px }
-  87% { margin-left: 0 }
-  100% { margin-left: 0 }
+@keyframes gyst {
+  0% { letter-spacing: 0 }
+  12% {letter-spacing:-1px}
+  25% { letter-spacing: -2px }
+  50% { letter-spacing:  -4px }
+  60% { letter-spacing:  -6px }
+  75% { letter-spacing:  -4px }
+  87% { letter-spacing: -2 }
+  100% { letter-spacing: 0 }
 }
 
+@webkit-keyframes gyst {
+    0% { letter-spacing: 0 }
+  12% {letter-spacing:-1px}
+  25% { letter-spacing: -2px }
+  50% { letter-spacing:  -4px }
+  60% { letter-spacing:  -6px }
+  75% { letter-spacing:  -4px }
+  87% { letter-spacing: -2 }
+  100% { letter-spacing: 0 }
+}
 
 /////////////////////////////////////////////
 

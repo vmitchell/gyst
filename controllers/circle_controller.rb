@@ -60,7 +60,7 @@ post "/circle/add_to_circle" do
     user_to_add  = User.find_by_username params[:username]
     circle = logged_in_user.circles.find_by_name params[:circle]
     if user_to_add.nil?
-        show_message "There is no user with the username ' #{params[:username]} '"
+        show_message "There is no user with the username #{params[:username]} '"
         redirect user_page
     end
     if logged_in_user.id == user_to_add.id

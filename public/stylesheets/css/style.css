@@ -64,6 +64,9 @@
   color: #b11111;
   position: relative;
   top: -3px; }
+  .navbar.navbar-default .navbar-brand:hover {
+    animation: gyst 4s normal forwards ease-in-out;
+    -webkit-animation: gyst 4s normal forwards ease-in-out; }
 .navbar.navbar-default .nav-login-block {
   margin-top: 5px;
   position: relative; }
@@ -83,8 +86,7 @@
     margin-left: 10px;
     border-radius: 5px;
     background: #ffd03c;
-    color: #fff;
-    border: 2px solid #f1e22c; }
+    color: #fff; }
     .navbar.navbar-default .nav-login-block .btn-login:hover {
       text-decoration: none; }
   .navbar.navbar-default .nav-login-block .icon-exit {
@@ -152,29 +154,56 @@ html body {
   box-sizing: border-box; }
 
 .denied {
-  animation: shake 0.35s normal forwards ease-in-out; }
+  animation: gyst 0.35s normal forwards ease-in-out; }
 
-@keyframes shake {
+@keyframes gyst {
   0% {
-    margin-left: 0; }
+    letter-spacing: 0; }
 
   12% {
-    margin-left: 0; }
+    letter-spacing: -1px; }
 
   25% {
-    margin-left: -10px; }
+    letter-spacing: -2px; }
 
   50% {
-    margin-left: 10px; }
+    letter-spacing: -4px; }
+
+  60% {
+    letter-spacing: -6px; }
 
   75% {
-    margin-left: -10px; }
+    letter-spacing: -4px; }
 
   87% {
-    margin-left: 0; }
+    letter-spacing: -2; }
 
   100% {
-    margin-left: 0; } }
+    letter-spacing: 0; } }
+@webkit-keyframes gyst {
+  0% {
+    letter-spacing: 0; }
+
+  12% {
+    letter-spacing: -1px; }
+
+  25% {
+    letter-spacing: -2px; }
+
+  50% {
+    letter-spacing: -4px; }
+
+  60% {
+    letter-spacing: -6px; }
+
+  75% {
+    letter-spacing: -4px; }
+
+  87% {
+    letter-spacing: -2; }
+
+  100% {
+    letter-spacing: 0; } }
 a {
   display: inline-block;
   transition: all ease 0.3s; }
