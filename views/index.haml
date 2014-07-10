@@ -10,6 +10,7 @@
     - if logged_in_user.circles.empty? 
         = "no tasks not even shared ;("
     - else
+        %h3 Moving Timeline
         %ul
             -logged_in_user.circles.each do | circle | 
                 - circle.tasks.order("due DESC").all.each do |task| 
@@ -19,3 +20,7 @@
                             - date = task.due
                             - if !date.nil?
                                 = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
+%div
+    - if session[:evernote_token]
+        - @content.each do | note | 
+            = note

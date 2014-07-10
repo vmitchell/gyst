@@ -175,9 +175,6 @@ html body {
 
   100% {
     margin-left: 0; } }
-.container-profile {
-  width: 263px; }
-
 a {
   display: inline-block;
   transition: all ease 0.3s; }
