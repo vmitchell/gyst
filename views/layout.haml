@@ -30,14 +30,14 @@
     %header
         .container
             .messages
+                .alert.alert-success
                 - if  !session[:message].nil? && !session[:message].empty?
-                    .alert.alert-success  
-                        = session[:message]
+                    = session[:message]
                 - session[:message] = ""
                 = print_errors
+                .alert.alert-danger
                 -if !session[:error].nil? && !session[:error].empty?
-                    .alert.alert-danger
-                        = session[:error]
+                    = session[:error]
                 - session[:error] = ""
             = yield
     %footer

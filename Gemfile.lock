@@ -90,6 +90,7 @@ DEPENDENCIES
   debugger
   evernote_oauth
   haml
+  json
   pg
   pony
   rack-flash3

@@ -1,18 +1,19 @@
-get "/circle/create" do
+get "/circles/new" do
     haml :create_circle
 end
 
-post "/circle/create" do
+post "/circles/new" do #json
+    content_type :json
+
     circle = Circle.new
-    circle.attributes = params
+    circle.name = params[:name]
     circle.creator_id = logged_in_user.id
     if circle.save
         logged_in_user.circles << circle
-        show_message "Circle has been created successfully."
-        redirect user_page
+        count = {count: circle.users.count}
+        [circle,count].to_json
     else
-        show_error circle.errors.full_messages.first
-        redirect user_page
+        status 500
     end
 end
 
@@ -60,19 +61,19 @@ post "/circle/add_to_circle" do
     user_to_add  = User.find_by_username params[:username]
     circle = logged_in_user.circles.find_by_name params[:circle]
     if user_to_add.nil?
-        show_message "There is no user with the username #{params[:username]} '"
+        show_error "There is no user with the username #{params[:username]} '"
         redirect user_page
     end
     if logged_in_user.id == user_to_add.id
-        show_message "Sorry, adding yourself is somewhat redundant"
+        show_error "Sorry, adding yourself is somewhat redundant"
         redirect user_page
     end
     if !user_to_add.nil? && !circle.nil? # legit fields
         alert = user_to_add.alerts.find_by_user_id user_to_add.id
         if !alert.nil? && alert.add_to_circle_id == circle.id 
-             show_message "Sorry, this user has already been invited."
+             show_error "Sorry, this user has already been invited."
         elsif !(user_to_add.circles.find_by_id circle.id).nil?
-             show_message "Sorry, this user is already in the circle '#{circle.name}'."
+             show_error "Sorry, this user is already in the circle '#{circle.name}'."
         else
             user_to_add.alerts << Alert.create(
             message: "#{logged_in_user.name.capitalize} would like to add you to the circle '#{circle.name.capitalize}'",

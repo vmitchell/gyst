@@ -11,6 +11,7 @@ gem "sass"
 gem "pony"
 gem 'debugger'
 gem 'rack-flash3'
+gem 'json'
 gem 'evernote_oauth'
 gem 'timezone'
 gem "sinatra-activerecord"

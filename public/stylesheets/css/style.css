@@ -57,6 +57,15 @@
 .icon-foursquare:before {
   content: "\e60c"; }
 
+html body {
+  font-family: "Raleway", "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
 .navbar.navbar-default .navbar-brand {
   font-family: Changa One;
   font-size: 4rem;
@@ -90,7 +99,8 @@
     font-size: 2.5rem;
     margin-top: 8px;
     margin-left: 5px;
-    color: #444; }
+    color: #444;
+    vertical-align: -7px; }
     .navbar.navbar-default .nav-login-block .icon-exit:hover {
       text-decoration: none; }
   .navbar.navbar-default .nav-login-block .alerts {
@@ -104,7 +114,8 @@
     height: 22px;
     top: 5px;
     text-align: center;
-    color: white; }
+    color: white;
+    z-index: 3; }
   .navbar.navbar-default .nav-login-block .user-pic {
     border: 5px solid #F8F8F8;
     border-radius: 100%;
@@ -113,28 +124,75 @@
     height: 70px;
     position: absolute;
     left: -80px;
-    top: 10px; }
-
-#user-profile .username {
-  font-size: 2rem;
-  color: #ccc; }
-#user-profile div.email {
-  font-size: 2rem;
-  color: #ccc; }
-#user-profile .name {
-  font-size: 3rem;
-  font-family: "Helvetica", "Arial", "sans-serif";
-  color: #444;
-  padding: 5px 0; }
-#user-profile .location {
-  padding: 5px 0;
-  color: #444; }
+    top: 10px;
+    z-index: 2; }
 
 .user-act .act-header {
   background: #f8f8f8;
   border-bottom: 1px solid #e7e7e7;
   border-top: 5px solid #b11111;
   padding: 3px 0; }
+
+.profile-details {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  border-radius: 5px; }
+
+#user-profile .nav-tabs {
+  border: 0; }
+  #user-profile .nav-tabs li a {
+    padding: 7px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    color: #fff;
+    opacity: 0.7; }
+  #user-profile .nav-tabs li.active a {
+    padding: 7px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    color: #fff;
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(2, 1, 1, 0.41); }
+  #user-profile .nav-tabs .usr-edit-profile {
+    float: right; }
+    #user-profile .nav-tabs .usr-edit-profile a {
+      background-color: #f8f8f8;
+      border-color: #e7e7e7;
+      color: black; }
+    #user-profile .nav-tabs .usr-edit-profile.active a {
+      background-color: #f8f8f8;
+      border-color: #e7e7e7;
+      color: #000000; }
+#user-profile .usr-profile a {
+  background: #6193FF;
+  border-color: #6193FF; }
+#user-profile .usr-circles a {
+  border-color: #59CA24;
+  background: #59CA24; }
+#user-profile .usr-circles.active a {
+  background: #59CA24; }
+#user-profile .usr-tasks a {
+  background: #ffd03c;
+  border-color: #ffd03c; }
+#user-profile .usr-tasks.active a {
+  background: #ffd03c;
+  border-color: #ffd03c; }
+#user-profile #profile #profile-info .username {
+  font-size: 2rem;
+  color: #ccc; }
+#user-profile #profile #profile-info div.email {
+  font-size: 2rem;
+  color: #ccc; }
+#user-profile #profile #profile-info .name {
+  font-size: 3rem;
+  font-family: "Helvetica", "Arial", "sans-serif";
+  color: #444;
+  padding: 5px 0; }
+#user-profile #profile #profile-info .location {
+  padding: 5px 0;
+  color: #444; }
+#user-profile #profile #profile-info .pull-right {
+  margin-top: 20px; }
 
 #timeline {
   position: relative;
@@ -191,19 +249,20 @@
   max-height: 150px;
   overflow-y: auto; }
 
+.user-circles,
+.user-tasks,
+.edit-profile {
+  margin-top: 20px; }
+
+#profile-tasks .tasks ul {
+  padding-left: 0; }
+  #profile-tasks .tasks ul li {
+    display: inline-block; }
+
 .alert-success {
   background-color: #BBF1A5;
   border-color: #d6e9c6;
   color: #3c763d; }
-
-html body {
-  font-family: "Raleway", "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333; }
-
-*, *:before, *:after {
-  box-sizing: border-box; }
 
 .denied {
   animation: gyst 0.35s normal forwards ease-in-out; }

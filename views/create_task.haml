@@ -1,5 +1,5 @@
 %form{action: "/task/create", method: "post"}
-    %input{type: "text", name: "name", id: "name", placeholder: " Name", required: "true"}
+    %input{type: "text", name: "name", id: "name", placeholder: " Name", required: "true", maxlength: "40"}
     %input{type: "text", name: "location", id: "location", placeholder: " Location"}
     %label{for: "due"}Due
     %input{type: "datetime-local", name: "due", required: "true"} 

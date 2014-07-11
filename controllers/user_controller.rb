@@ -3,21 +3,60 @@ require 'evernote_oauth'
 get "/" do
     @users = User.all
     @tasks = Task.all
-    # token = session[:evernote_token].token
-    # client = EvernoteOAuth::Client.new(token: token)
-    # note_store = client.note_store
-    # filter = Evernote::EDAM::NoteStore::NoteFilter.new
-#     @notebooks = note_store.listNotebooks  token
-# # Get all the notes for a notebook
-#     @notes = note_store.findNotes(token, filter, nil, 10) 
-#     # Display the notes
-#     @content = []
-#     @notes.notes.each do |note|
-#   # puts note.title
-#   # puts note.guid
-#     @content << note_store.getNoteContent(token, note.guid)
-#     end
     haml :index
+end
+
+get "/evernote/notes" do
+    @users = User.all
+    @tasks = Task.all
+    @content = []
+    @notes.notes.each do |note|
+    @debug = Time.at(note.attributes.reminderTime/1000).in_time_zone logged_in_user.timezone
+    @content << note_store.getNoteContent(token, note.guid)
+    end
+    haml :index
+end
+
+get '/evernote' do
+    client = EvernoteOAuth::Client.new
+    request = client.request_token oauth_callback: "http://localhost:4567/evernote/auth"
+    session[:request] = request
+    redirect request.authorize_url
+end
+
+get '/evernote/auth' do
+    access_token = session[:request].get_access_token(oauth_verifier: params[:oauth_verifier])
+    session[:evernote_token] = access_token
+
+    token = session[:evernote_token].token
+    client = EvernoteOAuth::Client.new(token: token)
+    note_store = client.note_store
+    filter = Evernote::EDAM::NoteStore::NoteFilter.new
+    @notebooks = note_store.listNotebooks  token
+    @notes = note_store.findNotes(token, filter, nil, 10) 
+
+    # @content = []
+    @notes.notes.each do |note|
+        note_time = note.attributes.reminderTime
+        defaut_circle = logged_in_user.circles.find_by_name("Evernote tasks")
+        if note_time.nil?
+        else
+            time = Time.at(note_time/1000).in_time_zone logged_in_user.timezone
+            if defaut_circle.nil?
+                circle  = Circle.create name: "Evernote tasks", creator_id: logged_in_user.id
+                logged_in_user.circles << circle
+                circle_id = logged_in_user.circles.last.id
+                logged_in_user.tasks.create name: note.title, due: time, circle_id: circle_id
+                show_message "Your notes from Evernote were succsessfully imported"
+            else
+                time = Time.at(note_time/1000).in_time_zone logged_in_user.timezone
+                logged_in_user.tasks.create name: note.title, due: time, circle_id: defaut_circle.id
+                show_message "Your notes from Evernote were succsessfully imported."
+            end
+        end
+        # @content << note_store.getNoteContent(token, note.guid)
+    end
+    redirect user_page
 end
 
 get "/user/:id" do
@@ -87,18 +126,5 @@ end
 
 get '/logout' do
     session.clear
-    redirect '/'
-end
-
-get '/evernote' do
-    client = EvernoteOAuth::Client.new
-    request = client.request_token(:oauth_callback => "http://localhost:4567/evernote/auth")
-    session[:request] = request
-    redirect request.authorize_url
-end
-
-get '/evernote/auth' do
-    access_token = session[:request].get_access_token(oauth_verifier: params[:oauth_verifier])
-    session[:evernote_token] = access_token
     redirect '/'
 end

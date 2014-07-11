@@ -8,6 +8,7 @@
             %a{:href => "/user/#{user.id}"} #{user.username}
 
 %div
+    = @debug
     - if session[:evernote_token]
         - @content.each do | note | 
             = note

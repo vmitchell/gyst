@@ -8,13 +8,13 @@
             - if you
                 .row
                     %ul.nav.nav-tabs.col-md-12
-                        %li.active
+                        %li.usr-profile.active
                             %a{href: "#profile-info", data: {toggle: "tab"}} Profile
-                            %li
+                            %li.usr-circles
                                 %a{href: "#profile-circles", data: {toggle: "tab"}} Circles
-                            %li
+                            %li.usr-tasks
                                 %a{href: "#profile-tasks", data: {toggle: "tab"}} Tasks
-                            %li
+                            %li.usr-edit-profile
                                 %a{href: "#profile-edit", data: {toggle: "tab"}} Edit Profile
                 .row
                     #profile.tab-content.col-md-12
@@ -37,9 +37,9 @@
             - tasks = []
             -logged_in_user.circles.each do | circle | 
                 - circle.tasks.all.each do |task| 
-                    -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60)
+                    -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60) #today's tasks
                         - tasks << task
-            -tasks.sort! { |x,y| y.due<=> x.due}
+            -tasks.sort! { | x,y | y.due<=> x.due}
             -tasks.each do |task| 
                 - i += 1
                 .task-timeline{class: "#{i%2 == 0 ? 'right' : 'left'} #{(task_due task) ? 'remind' : " "}"}
@@ -47,5 +47,4 @@
                     - date = task.due
                     - if !date.nil?
                         %span.date-timeline
-                            / on %-dth of %B
                             = (date.in_time_zone logged_in_user.timezone).strftime("today at %l :%M %P")
