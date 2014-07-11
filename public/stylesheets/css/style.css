@@ -100,6 +100,9 @@ select {
   color: #b11111;
   position: relative;
   top: -3px; }
+  .navbar.navbar-default .navbar-brand:hover {
+    animation: gyst .8s normal forwards ease-in;
+    -webkit-animation: gyst .8s normal forwards ease-in; }
 .navbar.navbar-default .nav-login-block {
   margin-top: 5px;
   position: relative; }
@@ -268,21 +271,21 @@ select {
     width: 4px;
     background: #d7e4ed; }
   #timeline .task-timeline.left {
-    text-align: left;
-    margin-right: 50%;
+    text-align: right;
+    margin-right: 53%;
     height: 60px; }
     #timeline .task-timeline.left:after {
       content: "aa";
       position: relative;
-      left: 97%;
+      left: 12%;
       z-index: 9;
       border-radius: 100%;
       color: #d7e4ed;
       background: #d7e4ed;
-      top: -20px; }
+      top: -30px; }
   #timeline .task-timeline.right {
-    text-align: right;
-    margin-left: 50%;
+    text-align: left;
+    margin-left: 55%;
     height: 60px; }
     #timeline .task-timeline.right:before {
       content: "aa";

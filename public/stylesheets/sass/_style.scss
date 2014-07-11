@@ -47,8 +47,8 @@ select {
     position: relative;
     top: -3px;
     &:hover {
-        //   animation: gyst 1s normal forwards ease-in-out;
-        // -webkit-animation: gyst 1s normal forwards ease-in-out;
+          animation: gyst .8s normal forwards ease-in;
+        -webkit-animation: gyst .8s normal forwards ease-in;
     }
   }
   .nav-login-block {
@@ -280,23 +280,23 @@ select {
       background: #d7e4ed;
     }
     &.left {
-      text-align: left;
-      margin-right: 50%;
+      text-align: right;
+      margin-right: 53%;
       height: 60px;
       &:after {
         content: "aa";
         position: relative;
-        left: 97%;
+        left: 12%;
         z-index: 9;
         border-radius: 100%;
         color: #d7e4ed;
         background: #d7e4ed;
-        top: -20px;
+        top: -30px;
       }
     }
     &.right {
-      text-align:right;
-      margin-left: 50%;
+      text-align: left;
+      margin-left: 55%;
       height: 60px;
       &:before{
         content: "aa";

@@ -16,7 +16,6 @@
                                 %a{href: "#profile-tasks", data: {toggle: "tab"}} Tasks
                             %li.usr-edit-profile
                                 %a{href: "#profile-edit", data: {toggle: "tab"}} Edit Profile
-
                 .row
                     #profile.tab-content.col-md-12
                         #profile-info.tab-pane.active-in.active
@@ -29,7 +28,9 @@
                             = haml :_user_tasks, layout: false
 - if is_logged_in?
     - if logged_in_user.circles.empty? 
-        = "no tasks not even shared ;("
+        %h1.text-center
+            = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"
+        = "No tasks, please add some"
     - else
         %h1.text-center
             = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"

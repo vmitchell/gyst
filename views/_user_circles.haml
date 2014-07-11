@@ -3,7 +3,7 @@
         / %h4.tab-header.text-center Circles
         .user-circles.col-lg-9.col-m-9
             - if you && @user.circles.empty? 
-                %span.content-empty no circles
+                %span.content-empty No circles
             - elsif
                 %ul
                     - @user.circles.all.each do |circle| 
@@ -22,7 +22,6 @@
                     %span.cirlce Choose a circle
                     %select{name: 'circle'}
                         -logged_in_user.circles.each do |circle|
-                            - if circle.creator_id == logged_in_user.id
-                                %option{value: "#{h circle.name}"} 
-                                    = h circle.name
+                            %option{value: "#{h circle.name}"} 
+                                = h circle.name
                     %input{type: 'submit', value: 'Add this user'}
