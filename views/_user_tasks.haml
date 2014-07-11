@@ -1,12 +1,9 @@
 .row.user-act
-    .user-tasks.col-lg-12.col-md-12
+    .user-tasks.col-lg-9.col-md-9
         - if you
-            / %h1.text-center.act-header Tasks
             - if @user.tasks.empty? 
-                = haml :create_task, :layout => false
-                %span.content-empty no tasks
+                %span.content-empty No tasks
             - else
-                = haml :create_task, :layout => false
                 .tasks
                     - @user.tasks.order("created_at DESC").all.each do |task| 
                         %ul
@@ -17,3 +14,6 @@
                                     = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
                                 = link_to "/task/#{task.id}/edit" ,"edit" if you
                                 = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
+    .user-tasks-add.col-lg-3.col-md-3.text-center
+        %h4.create-task-form Create a task
+        = haml :create_task, layout: false

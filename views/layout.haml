@@ -13,7 +13,7 @@
                     %li  
                         - if is_logged_in?
                             .nav-login-block
-                                / %a{href: "#", class: "btn-add-user"} +
+                                %a{href: "/evernote", class: "btn-add-user"}
                                 %a{href: "/user/#{logged_in_user.id}"}
                                     %img{src: "/imgs/lego_faces/#{logged_in_user.picture}.jpg", class: "user-pic"}
                                     %a{href: "/user/#{logged_in_user.id}", class: "alerts"} 
@@ -27,18 +27,18 @@
                                 %span
                                     Welcome, #{DEFAULT_USERNAME}
                                 = link_to '/signup' , "Login/Sign Up", {class: "btn-login"}
+    .messages.container
+        .alert.alert-success
+            - if  !session[:message].nil? && !session[:message].empty?
+                = session[:message]
+            - session[:message] = ""
+        .alert.alert-danger
+            = print_errors
+            -if !session[:error].nil? && !session[:error].empty?
+                = session[:error]
+            - session[:error] = ""
     %header
         .container
-            .messages
-                .alert.alert-success
-                - if  !session[:message].nil? && !session[:message].empty?
-                    = session[:message]
-                - session[:message] = ""
-                = print_errors
-                .alert.alert-danger
-                -if !session[:error].nil? && !session[:error].empty?
-                    = session[:error]
-                - session[:error] = ""
             = yield
     %footer
         .container

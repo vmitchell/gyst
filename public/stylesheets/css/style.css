@@ -57,14 +57,41 @@
 .icon-foursquare:before {
   content: "\e60c"; }
 
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+html {
+  overflow-y: scroll; }
+
 html body {
   font-family: "Raleway", "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333; }
 
-*, *:before, *:after {
-  box-sizing: border-box; }
+input[type="text"],
+input[type="password"],
+input[type="datetime-local"] {
+  height: 35px;
+  box-shadow: inset 0px 0px 13px -4px #ccc;
+  border: 1px solid #ccc;
+  padding-left: 10px; }
+
+input[type="datetime-local"] {
+  width: 175px;
+  font-size: 1.1rem;
+  margin-bottom: 0; }
+
+select {
+  height: 35px;
+  box-shadow: inset 0px 0px 13px -4px #ccc;
+  border: 1px solid #ccc;
+  padding-left: 10px; }
+
+.alert-success {
+  background-color: #BBF1A5;
+  border-color: #d6e9c6;
+  color: #3c763d; }
 
 .navbar.navbar-default .navbar-brand {
   font-family: Changa One;
@@ -78,12 +105,13 @@ html body {
   position: relative; }
   .navbar.navbar-default .nav-login-block .btn-add-user {
     position: absolute;
-    left: -115px;
-    top: -30px;
+    left: -145px;
     font-size: 7rem;
-    width: 30px;
-    height: 30px;
-    color: #b11111; }
+    width: 50px;
+    height: 50px;
+    background: url("/imgs/rsz_evernote.png");
+    background-size: 80%;
+    background-repeat: no-repeat; }
     .navbar.navbar-default .nav-login-block .btn-add-user:hover {
       color: #b11111;
       text-decoration: none; }
@@ -193,6 +221,37 @@ html body {
   color: #444; }
 #user-profile #profile #profile-info .pull-right {
   margin-top: 20px; }
+#user-profile .user-circles {
+  height: 300px;
+  overflow: auto; }
+  #user-profile .user-circles ul {
+    display: block;
+    font-size: 1.5rem;
+    padding: 0; }
+    #user-profile .user-circles ul li {
+      display: block; }
+#user-profile .user-tasks {
+  height: 300px;
+  overflow: auto; }
+#user-profile .user-tasks-add {
+  margin-top: 20px; }
+  #user-profile .user-tasks-add input {
+    margin-bottom: 10px; }
+  #user-profile .user-tasks-add input[type="submit"] {
+    margin-top: 10px;
+    padding: 7px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    color: #fff;
+    opacity: 1;
+    border: 0;
+    background: #ffd03c;
+    border-color: #ffd03c; }
+  #user-profile .user-tasks-add select {
+    height: 35px;
+    box-shadow: inset 0px 0px 13px -4px #ccc;
+    border: 1px solid #ccc;
+    padding-left: 10px; }
 
 #timeline {
   position: relative;
@@ -254,15 +313,40 @@ html body {
 .edit-profile {
   margin-top: 20px; }
 
+#profile-edit .edit-profile input {
+  width: 50%;
+  margin-bottom: 10px; }
+#profile-edit .edit-profile input[type="submit"] {
+  background-color: #f8f8f8;
+  padding: 7px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 0;
+  width: 100%; }
+
 #profile-tasks .tasks ul {
   padding-left: 0; }
   #profile-tasks .tasks ul li {
     display: inline-block; }
 
-.alert-success {
-  background-color: #BBF1A5;
-  border-color: #d6e9c6;
-  color: #3c763d; }
+.user-create-circle {
+  margin-top: 20px; }
+  .user-create-circle form {
+    margin-bottom: 20px; }
+    .user-create-circle form input[type="submit"] {
+      margin-top: 10px;
+      background: #59CA24;
+      padding: 7px 10px;
+      margin-left: 10px;
+      border-radius: 5px;
+      color: #fff;
+      opacity: 1;
+      border: none; }
+    .user-create-circle form select {
+      height: 35px;
+      box-shadow: inset 0px 0px 13px -4px #ccc;
+      border: 1px solid #ccc;
+      padding-left: 10px; }
 
 .denied {
   animation: gyst 0.35s normal forwards ease-in-out; }

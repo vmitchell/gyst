@@ -1,10 +1,13 @@
 %form{action: "/task/create", method: "post"}
-    %input{type: "text", name: "name", id: "name", placeholder: " Name", required: "true", maxlength: "40"}
-    %input{type: "text", name: "location", id: "location", placeholder: " Location"}
-    %label{for: "due"}Due
-    %input{type: "datetime-local", name: "due", required: "true"} 
-
-    %label{for: "circle"}Circle
+    .task-name
+        %input{type: "text", name: "name", id: "name", placeholder: " Name", required: "true", maxlength: "40"}
+    .task-location
+        %input{type: "text", name: "location", id: "location", placeholder: " Location"}
+    .task-due
+        %div Due
+        %input{type: "datetime-local", name: "due", required: "true"} 
+    .task-circle
+    %div Choose a circle  
     %select{name: 'circle', required: "true"}
         - logged_in_user.circles.each do | circle | 
             - if circle.creator_id == logged_in_user.id

@@ -5,44 +5,56 @@ function ViewCircle() {
 ViewCircle.prototype.hideMessageBoxes = function() {
   var successBox = $('.alert.alert-success');
   failBox = $('.alert.alert-danger');
-  if (successBox.val() == "") {
+  if (successBox.val() == "" && successBox.text() != "" ) {
     successBox.hide();
   }
-  if (failBox.val() ==  "") {
+  if (failBox.val()  ==  "" && failBox.text() != "") {
     failBox.hide();
   }
 };
 
 ViewCircle.prototype.showCirlceCreateSuccess = function() {
   var $messageBox = $('.alert.alert-success');
-  $messageBox.fadeIn();
+  $messageBox.fadeIn('slow');
   $messageBox.text("Circle has been created successfully")
 };
 
 ViewCircle.prototype.showCirlceCreateFail = function() {
   var $messageBox = $('.alert.alert-danger');
-  $messageBox.fadeIn();
+  $messageBox.fadeIn('slow');
   $messageBox.text("There was an error, please try again")
 };
 
 ViewCircle.prototype.cleanInput = function() {
-  this.getCreateCircleInput().val("");
+  this.getCircleCreateInput().val("");
 };
 
- ViewCircle.prototype.getCreateCircleInput = function() {
-  return $('.user-circles input#name');
+ ViewCircle.prototype.getCircleCreateInput = function() {
+  return $('.user-create-circle input#name');
+};
+
+ ViewCircle.prototype.getCircleCreateForm = function() {
+  return $('.user-create-circle #circle-create-form');
 };
 
 ViewCircle.prototype.drawNewCircle = function(circle) {
   var newCircleEntry   = document.createElement('li');
         newCircleLink = document.createElement('a');
-        newCIrcleSpan = document.createElement('span');
+        // newCircleSpan = document.createElement('span');
+        newCircleEdit = document.createElement('a');
+        newCircleDelete = document.createElement('a');
   newCircleLink.href = "/circle/"+circle[0].id;
   newCircleLink.innerHTML = circle[0].name;
-  newCIrcleSpan.innerHTML = circle[1].count;
+  newCircleEdit.href = "/circle/"+circle[0].id+"/edit";
+  newCircleEdit.innerHTML = " edit "
+  newCircleDelete.href="/circle/"+circle[0].id+"/delete";
+  newCircleDelete.innerHTML = " delete (no confirm) "
+  // newCircleSpan.innerHTML = "- "+circle[1].count;
   newCircleEntry.className = 'circle';
-  newCircleLink.appendChild(newCIrcleSpan);
-    newCircleEntry.(newCircleLink);
+  newCircleEntry.appendChild(newCircleLink);
+  // newCircleEntry.appendChild(newCircleSpan);
+  newCircleEntry.appendChild(newCircleEdit)
+  newCircleEntry.appendChild(newCircleDelete)
   $('.user-circles ul li:last-child').append(newCircleEntry);
 };
 
@@ -52,12 +64,12 @@ function Guide(view) {
 }
 
 Guide.prototype.bindEvents = function() {
-  $(this.view.getCreateCircleInput).submit(this.createCircle.bind(this));
+  $(this.view.getCircleCreateForm()).submit(this.createCircle.bind(this));
 };
 
 Guide.prototype.createCircle = function(e) {
   e.preventDefault();
-  var name = this.view.getCreateCircleInput().val();
+  var name = this.view.getCircleCreateInput().val();
   self = this;
   $.ajax({
     type: "post",

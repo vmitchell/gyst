@@ -1,32 +1,28 @@
 .row.user-act
     - if you
-        .user-circles.col-lg-12.col-m-12
-            / %h1.text-center.act-header Circles
+        / %h4.tab-header.text-center Circles
+        .user-circles.col-lg-9.col-m-9
             - if you && @user.circles.empty? 
-                = haml :create_circle, :layout => false
                 %span.content-empty no circles
             - elsif
-                = haml :create_circle, :layout => false
                 %ul
                     - @user.circles.all.each do |circle| 
                         %li
-                            = link_to "/circle/#{circle.id}", "#{circle.name}"
-                            %span - #{circle.users.count}
+                            = link_to "/circle/#{circle.id}", "#{circle.name.capitalize}"
+                            / %span - #{circle.users.count}
                             = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
                             = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
-        %h1 Add a person to a circle
-        .container
-            .col-lg-12
-                .add-to-cirlce
-                    %form{action: '/circle/add_to_circle', method: 'post'}
-                        .person
-                            What user to add?
-                            %input{type: 'text', name: 'username', placeholder: 'User\'s username'}
-                        .cirlce
-                            What CIRCLE?
-                            %select{name: 'circle'}
-                                -logged_in_user.circles.each do |circle|
-                                    - if circle.creator_id == logged_in_user.id
-                                        %option{value: "#{h circle.name}"} 
-                                            = h circle.name
-                        %input{type: 'submit', value: 'Add this user'}
+        .user-create-circle.col-lg-3.col-m-3.text-center
+            %h4.create-circle-form Create a circle
+            = haml :create_circle, layout: false
+            .add-to-cirlce
+                %form{action: '/circle/add_to_circle', method: 'post'}
+                    %h4.person What user to add?
+                    %input{type: 'text', name: 'username', placeholder: 'User\'s username'}
+                    %span.cirlce Choose a circle
+                    %select{name: 'circle'}
+                        -logged_in_user.circles.each do |circle|
+                            - if circle.creator_id == logged_in_user.id
+                                %option{value: "#{h circle.name}"} 
+                                    = h circle.name
+                    %input{type: 'submit', value: 'Add this user'}
