@@ -34,13 +34,11 @@ post  "/task/:task_id/edit" do
     @task.due = (Time.zone.parse params[:due]).in_time_zone logged_in_user.timezone
     circle = logged_in_user.circles.find_by_name params[:circle]
     circle.tasks << @task
+    alert = Alert.find_by_task_id @task.id
     if @task.save
-        if !alert = (Alert.find_by_task_id @task.id).nil?
-            alert.destroy
-        end
+        alert.nil? ? "" : alert.destroy
         session[:message] = 'Your task was successfully edited.'
         redirect user_page
-        # redirect "/task/#{@task.id}/edit"
     else
         @errors = @task.errors.full_messages
         haml :edit_task
@@ -51,9 +49,8 @@ get "/task/:task_id/delete" do
     task = logged_in_user.tasks.find_by_id "#{params[:task_id]}"
     logged_in_user.tasks.find(task.id).destroy
     session[:message]  = "Task has been cultivated successfully."
-    if !alert = (Alert.find_by_task_id task.id).nil?
-        alert.destroy
-    end
+    alert = Alert.find_by_task_id task.id
+    alert.nil? ? "" : alert.destroy
     redirect user_page
 end
 

@@ -21,7 +21,7 @@ helpers do
     alias_method :h, :escape_html
 
     def title
-        @title ?  "#{@title}" : "Annoyer"
+        @title ?  "#{@title}" : "gyst"
     end
 
     def username
@@ -149,16 +149,22 @@ helpers do
         reminders_query
     end
 
+    def task_due task
+        due = (task.due.utc - Time.now.utc)/60
+        if due <= 30 && due > 0
+            true
+        end
+    end
+
     def reminders_query
         reminders = []
-        offset = 30*60 #30 min
         if is_logged_in?
             logged_in_user.circles.each do | circle |
                 circle.users.each do | user |
                     if user.id != logged_in_user.id
                         circle.tasks.each do | task|
                             remind_time =(task.due.utc - Time.now.utc)/60
-                            if ( remind_time <= 30 && remind_time > 0)
+                            if remind_time <= 30 && remind_time > 0
                                 reminders << task
                             end
                         end

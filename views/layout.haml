@@ -13,10 +13,10 @@
                     %li  
                         - if is_logged_in?
                             .nav-login-block
-                                %a{href: "#", class: "btn-add-user"} +
+                                / %a{href: "#", class: "btn-add-user"} +
                                 %a{href: "/user/#{logged_in_user.id}"}
                                     %img{src: "/imgs/lego_faces/#{logged_in_user.picture}.jpg", class: "user-pic"}
-                                    %a{href: "/user/#{logged_in_user.id}/alerts", class: "alerts"} 
+                                    %a{href: "/user/#{logged_in_user.id}", class: "alerts"} 
                                         = get_reminders.size
                                     Welcome, 
                                     = link_to "/user/#{logged_in_user.id}", username

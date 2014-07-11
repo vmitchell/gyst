@@ -6,20 +6,7 @@
     - @users.each do |user|
         %h4
             %a{:href => "/user/#{user.id}"} #{user.username}
-- if is_logged_in?
-    - if logged_in_user.circles.empty? 
-        = "no tasks not even shared ;("
-    - else
-        %h3 Moving Timeline
-        %ul
-            -logged_in_user.circles.each do | circle | 
-                - circle.tasks.order("due DESC").all.each do |task| 
-                    -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60)
-                        %li
-                            = h task.name
-                            - date = task.due
-                            - if !date.nil?
-                                = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
+
 %div
     - if session[:evernote_token]
         - @content.each do | note | 

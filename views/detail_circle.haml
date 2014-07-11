@@ -12,22 +12,5 @@
     = h task.name
     = h task.location
     = h task.due
-- if your_circle @circle
-    %h1
-        ADD TO THIS CIRCLE
-    .container
-        .col-lg-12
-            .add-to-cirlce
-                %form{action: '/circle/add_to_circle', method: 'post'}
-                    .person
-                        What user to add?
-                        %input{type: 'text', name: 'username', placeholder: 'User\'s username'}
-                    .cirlce
-                        What CIRCLE?
-                        %select{name: 'circle'}
-                            -logged_in_user.circles.each do |circle|
-                                - if circle.creator_id == logged_in_user.id
-                                    %option{value: "#{h circle.name}"} 
-                                        = h circle.name
-                    %input{type: 'submit', value: 'Add this user'}
+
 

@@ -64,9 +64,6 @@
   color: #b11111;
   position: relative;
   top: -3px; }
-  .navbar.navbar-default .navbar-brand:hover {
-    animation: gyst 4s normal forwards ease-in-out;
-    -webkit-animation: gyst 4s normal forwards ease-in-out; }
 .navbar.navbar-default .nav-login-block {
   margin-top: 5px;
   position: relative; }
@@ -139,6 +136,61 @@
   border-top: 5px solid #b11111;
   padding: 3px 0; }
 
+#timeline {
+  position: relative;
+  padding: 2rem 0;
+  width: 35%;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden; }
+  #timeline .task-timeline:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 4px;
+    background: #d7e4ed; }
+  #timeline .task-timeline.left {
+    text-align: left;
+    margin-right: 50%;
+    height: 60px; }
+    #timeline .task-timeline.left:after {
+      content: "aa";
+      position: relative;
+      left: 97%;
+      z-index: 9;
+      border-radius: 100%;
+      color: #d7e4ed;
+      background: #d7e4ed;
+      top: -20px; }
+  #timeline .task-timeline.right {
+    text-align: right;
+    margin-left: 50%;
+    height: 60px; }
+    #timeline .task-timeline.right:before {
+      content: "aa";
+      position: absolute;
+      left: 48%;
+      z-index: 9;
+      border-radius: 100%;
+      color: #d7e4ed;
+      background: #d7e4ed;
+      width: 20px;
+      height: 20px;
+      margin-top: 10px; }
+  #timeline .task-timeline.remind {
+    color: darkred;
+    cursor: pointer; }
+  #timeline .date-timeline {
+    display: block;
+    font-size: 1.2rem;
+    color: #bbb;
+    height: 0; }
+
+.user-tasks-due {
+  max-height: 150px;
+  overflow-y: auto; }
+
 .alert-success {
   background-color: #BBF1A5;
   border-color: #d6e9c6;
@@ -156,7 +208,7 @@ html body {
 .denied {
   animation: gyst 0.35s normal forwards ease-in-out; }
 
-@keyframes gyst {
+@-webkit-keyframes gyst {
   0% {
     letter-spacing: 0; }
 
@@ -180,7 +232,7 @@ html body {
 
   100% {
     letter-spacing: 0; } }
-@webkit-keyframes gyst {
+@keyframes gyst {
   0% {
     letter-spacing: 0; }
 

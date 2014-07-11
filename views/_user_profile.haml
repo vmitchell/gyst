@@ -1,0 +1,40 @@
+.pull-right
+    .username.text-right
+        = @user.username
+    - if you
+        .email.text-right
+            %span.icon.icon-eye-blocked
+            %span.email
+                = @user.email
+.name
+    = @user.name
+.location
+    %span.icon.icon-location
+    %span.timezone
+        = @user.timezone
+- if you
+    - if @user.alerts.find_by_alert_type("request").nil? 
+        %h4 Circle invites:
+        .div.content-empty No invites.
+    - else
+        %section.user-circle-invites
+            %h4 Circle invites:
+            - @user.alerts.order("created_at DESC").all.each do |alert| 
+                - if alert.alert_type == "request"
+                    %ul{class: 'messages'}
+                        %li
+                            = h alert.message
+                            = link_to "/circle/invite/accept/#{alert.id}", "Accept", {class: "accept"}
+                            = link_to "/circle/invite/decline/#{alert.id}", "Decline", {class: "decline"}
+%section.user-tasks
+    %h4
+        Tasks due in 30 minutes:
+    .user-tasks-due
+        - if get_reminders.empty?
+            .div.content-empty No tasks.
+        - else
+            - get_reminders.each do |task| 
+                .task-remind
+                    = (task.due.in_time_zone logged_in_user.timezone).strftime("%-d %B at %l :%M %P")
+                    = task.user.name
+                    = link_to "/remind/#{task.user.id}/#{task.id}", "Remind"

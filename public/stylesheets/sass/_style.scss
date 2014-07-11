@@ -6,10 +6,10 @@
     color: rgb(177,17,17);
     position: relative;
     top: -3px;
-&:hover {
-      animation: gyst 4s normal forwards ease-in-out;
-    -webkit-animation: gyst 4s normal forwards ease-in-out;
-}
+    &:hover {
+        //   animation: gyst 1s normal forwards ease-in-out;
+        // -webkit-animation: gyst 1s normal forwards ease-in-out;
+    }
   }
   .nav-login-block {
     margin-top: 5px;
@@ -87,7 +87,6 @@
     color: #444;
     padding: 5px 0;
   }
-
   .location {
     padding: 5px 0;
     color: #444;
@@ -102,6 +101,102 @@
     padding: 3px 0;
   }
 }
+
+
+////////////////////////////TIMELINE//////////////////
+
+#timeline {
+  position: relative;
+  padding: 2rem 0;
+  width: 35%;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+  .task-timeline {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      height: 100%;
+      width: 4px;
+      background: #d7e4ed;
+    }
+    &.left {
+      text-align: left;
+      margin-right: 50%;
+      height: 60px;
+      &:after {
+        content: "aa";
+        position: relative;
+        left: 97%;
+        z-index: 9;
+        border-radius: 100%;
+        color: #d7e4ed;
+        background: #d7e4ed;
+        top: -20px;
+      }
+    }
+    &.right {
+      text-align:right;
+      margin-left: 50%;
+      height: 60px;
+      &:before{
+        content: "aa";
+        position: absolute;
+        left: 48%;
+        z-index: 9;
+        border-radius: 100%;
+        color: #d7e4ed;
+        background: #d7e4ed;
+        width: 20px;
+        height: 20px;
+        margin-top: 10px;
+      }
+    }
+    &.remind {
+    color: darkred;
+    cursor: pointer;
+    }
+  }
+  .date-timeline {
+    display: block;
+    font-size: 1.2rem;
+    color: #bbb;
+    height: 0;
+  }
+}
+
+
+
+//////////////////////////////USER PROFILE 1st tab///////////////////////
+
+.user-tasks-due {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .alert-success {
   background-color: #BBF1A5;
@@ -124,8 +219,8 @@ html body {
   animation: gyst 0.35s normal forwards ease-in-out;
 }
 
-@keyframes gyst {
-  0% { letter-spacing: 0 }
+@-webkit-keyframes gyst  {
+    0% { letter-spacing: 0 }
   12% {letter-spacing:-1px}
   25% { letter-spacing: -2px }
   50% { letter-spacing:  -4px }
@@ -135,7 +230,7 @@ html body {
   100% { letter-spacing: 0 }
 }
 
-@webkit-keyframes gyst {
+  @keyframes gyst{
     0% { letter-spacing: 0 }
   12% {letter-spacing:-1px}
   25% { letter-spacing: -2px }

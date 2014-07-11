@@ -11,68 +11,41 @@
                         %li.active
                             %a{href: "#profile-info", data: {toggle: "tab"}} Profile
                             %li
+                                %a{href: "#profile-circles", data: {toggle: "tab"}} Circles
+                            %li
+                                %a{href: "#profile-tasks", data: {toggle: "tab"}} Tasks
+                            %li
                                 %a{href: "#profile-edit", data: {toggle: "tab"}} Edit Profile
-            .row
-                #profile.tab-content.col-md-12
-                    #profile-info.tab-pane.active-in.active
-                        .pull-right
-                            .username.text-right
-                                = @user.username
-                            - if you
-                                .email.text-right
-                                    %span.icon.icon-eye-blocked
-                                    %span.email
-                                        = @user.email
-                        .name
-                            = @user.name
-                        .location
-                            %span.icon.icon-location
-                            %span.timezone
-                                = @user.timezone
-                        - if you
-                            - if @user.alerts.find_by_alert_type("request").nil? 
-                                %h4 Circle invites:
-                                .div.nothing-in No invites.
-                            - else
-                                %h4 Circle invites:
-                                - @user.alerts.order("created_at DESC").all.each do |alert| 
-                                    - if alert.alert_type == "request"
-                                        %ul{class: 'messages'}
-                                            %li
-                                                = h alert.message
-                                                = link_to "/circle/invite/accept/#{alert.id}", "Accept", {class: "accept"}
-                                                = link_to "/circle/invite/decline/#{alert.id}", "Decline", {class: "decline"}
-                    #profile-edit.tab-pane.fade 
-                        = haml :edit_user, :layout => false
-.row.user-act
-    - if you
-        .user-circles.col-lg-3.col-m-3
-            - if you && @user.circles.empty? 
-                %h1.text-center.act-header Circles
-                = haml :create_circle, :layout => false
-                %span no circles
-            - elsif
-                %h1.text-center.act-header Circles
-                = haml :create_circle, :layout => false
-                %ul
-                    - @user.circles.all.each do |circle| 
-                        %li
-                            = link_to "/circle/#{circle.id}", "#{circle.name}"
-                            %span - #{circle.users.count}
-                            = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
-                            = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
-        .user-tasks.col-lg-9.col-md-9
-            -if you
-                %h1.text-center.act-header Tasks
-                - if @user.tasks.empty? 
-                    %span no tasks
-                = haml :create_task, :layout => false
-                - @user.tasks.order("created_at DESC").all.each do |task| 
-                    %ul
-                        %li
-                            = h task.name
-                            - date = task.due
-                            - if !date.nil?
-                                = (date.in_time_zone logged_in_user.timezone).strftime("%-d %B %l :%M %P")
-                            = link_to "/task/#{task.id}/edit" ,"edit" if you
-                            = link_to "/task/#{task.id}/delete" ,"delete (no confim)" if you
+                .row
+                    #profile.tab-content.col-md-12
+                        #profile-info.tab-pane.active-in.active
+                            = haml :_user_profile, layout: false
+                        #profile-edit.tab-pane.fade 
+                            = haml :edit_user, layout: false
+                        #profile-circles.tab-pane.fade
+                            = haml :_user_circles, layout: false
+                        #profile-tasks.tab-pane.fade
+                            = haml :_user_tasks, layout: false
+- if is_logged_in?
+    - if logged_in_user.circles.empty? 
+        = "no tasks not even shared ;("
+    - else
+        %h1.text-center
+            = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"
+        #timeline.container
+            - i = 0 #left/right logic
+            - tasks = []
+            -logged_in_user.circles.each do | circle | 
+                - circle.tasks.all.each do |task| 
+                    -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60)
+                        - tasks << task
+            -tasks.sort! { |x,y| y.due<=> x.due}
+            -tasks.each do |task| 
+                - i += 1
+                .task-timeline{class: "#{i%2 == 0 ? 'right' : 'left'} #{(task_due task) ? 'remind' : " "}"}
+                    = "#{(User.find_by_id task.user_id).name} has to #{task.name}"
+                    - date = task.due
+                    - if !date.nil?
+                        %span.date-timeline
+                            / on %-dth of %B
+                            = (date.in_time_zone logged_in_user.timezone).strftime("today at %l :%M %P")

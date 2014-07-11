@@ -5,9 +5,9 @@
         %label{for: "name"} Name:
         %input{:type => "text", name: "name", id: "name", :value => "#{@task.name}", required: true}
         %label{for: "location"} : Location
-        %input{:type => "text", name: "location", id: "location", :value => "#{@task.location}", required: true}
+        %input{:type => "text", name: "location", id: "location", :value => "#{@task.location}"}
         %label{for: "due"} : Task is due:
-        %input{:type => "text", name: "due", id: "due", :value => "#{(@task.due.in_time_zone logged_in_user.timezone).strftime("%d %B %l :%M %P")}", required: true}
+        %input{:type => "datetime", name: "due", id: "due", :value => "#{(@task.due.in_time_zone logged_in_user.timezone).strftime("%d %B %l : %M %P")}", required: true}
         .container
             .col-lg-12
                 .add-to-cirlce
