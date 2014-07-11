@@ -30,7 +30,7 @@
     - if logged_in_user.circles.empty? 
         %h1.text-center
             = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"
-        = "No tasks, please add some"
+        %span.text-center No tasks, please add some
     - else
         %h1.text-center
             = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"

@@ -351,8 +351,18 @@ select {
     }
   }
 }
-
-
+.accept {
+    color: #59CA24;
+  &:hover {
+    color: #59CA24;
+  }
+}
+.decline {
+  color: #b11111;
+  &:hover {
+  color: #b11111;
+  }
+}
 #profile-tasks {
   .tasks {
     ul {

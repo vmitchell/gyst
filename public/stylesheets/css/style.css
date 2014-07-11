@@ -327,6 +327,16 @@ select {
   margin-left: 0;
   width: 100%; }
 
+.accept {
+  color: #59CA24; }
+  .accept:hover {
+    color: #59CA24; }
+
+.decline {
+  color: #b11111; }
+  .decline:hover {
+    color: #b11111; }
+
 #profile-tasks .tasks ul {
   padding-left: 0; }
   #profile-tasks .tasks ul li {
