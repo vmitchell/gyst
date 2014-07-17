@@ -26,27 +26,28 @@
                             = haml :_user_circles, layout: false
                         #profile-tasks.tab-pane.fade
                             = haml :_user_tasks, layout: false
-- if is_logged_in?
-    - if logged_in_user.circles.empty? 
-        %h1.text-center
-            = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"
-        %span.text-center No tasks, please add some
-    - else
-        %h1.text-center
-            = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"
-        #timeline.container
-            - i = 0 #left/right logic
-            - tasks = []
-            -logged_in_user.circles.each do | circle | 
-                - circle.tasks.all.each do |task| 
-                    -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60) #today's tasks
-                        - tasks << task
-            -tasks.sort! { | x,y | y.due<=> x.due}
-            -tasks.each do |task| 
-                - i += 1
-                .task-timeline{class: "#{i%2 == 0 ? 'right' : 'left'} #{(task_due task) ? 'remind' : " "}"}
-                    = "#{(User.find_by_id task.user_id).name} has to #{task.name}"
-                    - date = task.due
-                    - if !date.nil?
-                        %span.date-timeline
-                            = (date.in_time_zone logged_in_user.timezone).strftime("today at %l :%M %P")
+- if you
+    - if is_logged_in?
+        - if logged_in_user.circles.empty? 
+            %h1.text-center
+                = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"
+            %span.text-center No tasks, please add some
+        - else
+            %h1.text-center
+                = "#{Time.now.day}th of #{Date::MONTHNAMES[Date.today.month]} timeline"
+            #timeline.container
+                - i = 0 #left/right logic
+                - tasks = []
+                -logged_in_user.circles.each do | circle | 
+                    - circle.tasks.all.each do |task| 
+                        -if task.due >= Time.zone.now && task.due <= (Time.zone.now  + (24*60)*60) #today's tasks
+                            - tasks << task
+                -tasks.sort! { | x,y | y.due<=> x.due}
+                -tasks.each do |task| 
+                    - i += 1
+                    .task-timeline{class: "#{i%2 == 0 ? 'right' : 'left'} #{(task_due task) ? 'remind' : " "}"}
+                        = "#{(User.find_by_id task.user_id).name} has to #{task.name}"
+                        - date = task.due
+                        - if !date.nil?
+                            %span.date-timeline
+                                = (date.in_time_zone logged_in_user.timezone).strftime("today at %l :%M %P")

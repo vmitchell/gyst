@@ -1,15 +1,19 @@
-gyst
+# gyst
 ==========
 
+## Introduction
+Gyst stands for 'get your shit together' and is a social productivity tool that ensures that people you know have an ability to express their care by simply reminding. 
 
-Average day consists of 6 to 8 tasks. Everyone needs to take care of business, but some things get forgotten. With gyst, people you know won't let you forget anything ever again. Here is how it works: You add a person to a 'circle' you created and by creating tasks in that circle you allow that person to see your tasks. When your task is 30min due all people in this taks's circle will get an ability to remind you (email+sms). Here is a situation: I need to go to court in the morning and I need to take all the nessasary documents with me. gyst will send me reminders so I won't forget anything + my friends would know what I am doing throught the day and also that my mood is not great because who the hell enjoyes going to court in the morning?! (lawyer joke). You can call me after, see how I did with my task and show that you care.
+## Poject Goals
+1. Create a tool that would allow users to stay more connected and easily be up-to-date on what people you know are doing.
+2. Increase user's productivity and general awareness about people around.
+3. Analyze the ways to make a user more organized and productive.
 
-index page will show all the taks in 24hr period, so you can see who is doing what and what their average day is like. Show care, remind. 
+## How?
+Here is how it works: Add a person to a 'circle' you created and by creating tasks in that circle you allow that person to see your tasks. People who have access to the tasks' circle will get an ability to remind you once task is due in 30 min.
 
-
-
-
-
-
-call, to show you really care  
-list of people who's task is about to end
+## Why?
+Average day consists of 6 to 8 tasks. Everyone needs to take care of business, however some things get forgotten. Let's imagine that you need to go to court in the morning and take all of the nessasary documents with you. When your task is 30min due, gyst will send you reminders (email + sms) so you wouldn't forget anything. People you approved based on your daily tasks would know what your day is like, what you are doing in the evening and even what your mood is like - it's not great, because who the hell enjoyes going to court in the morning?!
+S
+## Built in 2 weeks with: 
+Ruby/Sinatra, js, haml, sass

@@ -55,7 +55,7 @@ ViewCircle.prototype.drawNewCircle = function(circle) {
   // newCircleEntry.appendChild(newCircleSpan);
   newCircleEntry.appendChild(newCircleEdit)
   newCircleEntry.appendChild(newCircleDelete)
-  $('.user-circles ul li:last-child').append(newCircleEntry);
+  $('.user-circles ul li').append(newCircleEntry);
 };
 
 function Guide(view) {
@@ -69,6 +69,7 @@ Guide.prototype.bindEvents = function() {
 
 Guide.prototype.createCircle = function(e) {
   e.preventDefault();
+  e.stopPropagation();
   var name = this.view.getCircleCreateInput().val();
   self = this;
   $.ajax({

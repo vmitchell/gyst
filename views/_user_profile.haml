@@ -37,4 +37,4 @@
                 .task-remind
                     = (task.due.in_time_zone logged_in_user.timezone).strftime("%-d %B at %l :%M %P")
                     = task.user.name
-                    = link_to "/remind/#{task.user.id}/#{task.id}", "Remind"
+                    = link_to "/remind/#{task.user.id}/#{task.id}", " Remind"

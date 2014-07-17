@@ -5,13 +5,7 @@
             - if you && @user.circles.empty? 
                 %span.content-empty No circles
             - elsif
-                %ul
-                    - @user.circles.all.each do |circle| 
-                        %li
-                            = link_to "/circle/#{circle.id}", "#{circle.name.capitalize}"
-                            / %span - #{circle.users.count}
-                            = link_to "/circle/#{circle.id}/edit" ,"edit" if your_circle circle
-                            = link_to "/circle/#{circle.id}/delete" ,"delete (no confim)" if your_circle circle
+
         .user-create-circle.col-lg-3.col-m-3.text-center
             %h4.create-circle-form Create a circle
             = haml :create_circle, layout: false
