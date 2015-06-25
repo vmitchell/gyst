@@ -14,3 +14,7 @@ Average day consists of 6 to 8 tasks. Everyone needs to take care of business, h
 
 Built in 2 weeks with: 
 Ruby/Sinatra, js, haml, sass
+
+#What people are saying about GYST
+
+Doge: much speed. very wow. such efficient.
